@@ -5,19 +5,28 @@ import { PRICING_TIERS } from "../data/site";
 <section id="pricing" class="bg-section-grey py-20 sm:py-28">
   <div class="mx-auto max-w-6xl px-6">
     <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Planned launch pricing</h2>
+      <span class="text-coral-orange font-heading text-xs font-bold uppercase tracking-widest">Pricing</span>
+      <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Planned launch pricing</h2>
       <p class="mt-4 text-lg text-body-text">Simple plans, no hidden add-ons. Confirmed price when we launch.</p>
     </div>
 
-    <div class="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
+    <div class="mt-14 grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
       {
         PRICING_TIERS.map((tier) => (
           <div
             class:list={[
-              "flex flex-col rounded-2xl border bg-canvas-white p-8",
-              tier.highlighted ? "border-2 border-coral-orange shadow-lg" : "border-border-grey",
+              "relative flex flex-col rounded-2xl border bg-canvas-white p-8 transition-transform duration-200",
+              tier.highlighted
+                ? "border-transparent shadow-2xl shadow-coral-orange/15 lg:scale-105"
+                : "border-border-grey hover:-translate-y-1 hover:shadow-md",
             ]}
           >
+            {tier.highlighted && (
+              <div class="bg-gradient-primary pointer-events-none absolute inset-0 -z-10 rounded-2xl p-[2px]" aria-hidden="true">
+                <div class="h-full w-full rounded-[calc(1rem-2px)] bg-canvas-white" />
+              </div>
+            )}
+
             {tier.badge && (
               <span class="bg-gradient-primary mb-4 inline-block w-fit rounded-full px-3 py-1 font-heading text-xs font-bold uppercase tracking-wide text-white">
                 {tier.badge}
@@ -34,8 +43,11 @@ import { PRICING_TIERS } from "../data/site";
 
             <ul class="mt-6 flex flex-1 flex-col gap-3">
               {tier.features.map((feature) => (
-                <li class="flex items-start gap-2 text-sm text-body-text">
-                  <span class="text-coral-orange mt-0.5" aria-hidden="true">
+                <li class="flex items-start gap-2.5 text-sm text-body-text">
+                  <span
+                    class="text-coral-orange bg-coral-orange/10 mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
+                    aria-hidden="true"
+                  >
                     ✓
                   </span>
                   <span>{feature}</span>
@@ -48,7 +60,7 @@ import { PRICING_TIERS } from "../data/site";
               class:list={[
                 "mt-8 rounded-full px-6 py-3 text-center font-heading text-sm font-bold transition-transform hover:scale-[1.02]",
                 tier.highlighted
-                  ? "bg-gradient-primary text-white"
+                  ? "bg-gradient-primary text-white shadow-md shadow-coral-orange/25"
                   : "border border-border-grey text-workshop-black hover:border-workshop-black",
               ]}
             >

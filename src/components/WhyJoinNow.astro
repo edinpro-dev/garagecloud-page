@@ -4,13 +4,14 @@ import { WHY_JOIN_NOW } from "../data/site";
 
 <section class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
   <div class="mx-auto max-w-2xl text-center">
-    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Why join now</h2>
+    <span class="text-coral-orange font-heading text-xs font-bold uppercase tracking-widest">Why now</span>
+    <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Why join now</h2>
   </div>
 
-  <div class="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
+  <div class="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
     {
       WHY_JOIN_NOW.map((reason, index) => (
-        <div class="text-center sm:text-left">
+        <div class="rounded-2xl border border-border-grey bg-canvas-white p-6 text-center transition-colors hover:border-coral-orange/30 sm:text-left">
           <span class="text-gradient-primary font-heading text-3xl font-extrabold">
             {String(index + 1).padStart(2, "0")}
           </span>

@@ -2,9 +2,20 @@
 import { BUSINESS_TYPES } from "../data/site";
 ---
 
-<section id="waiting-list" class="bg-gradient-dark py-20 sm:py-28">
-  <div class="mx-auto max-w-xl px-6 text-center">
-    <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Join the waiting list</h2>
+<section id="waiting-list" class="bg-gradient-dark relative overflow-hidden py-20 sm:py-28">
+  <div
+    class="bg-gradient-primary pointer-events-none absolute -bottom-32 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-xl px-6 text-center">
+    <span
+      class="bg-gradient-primary inline-block rounded-full px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-wide text-white"
+    >
+      Early access
+    </span>
+    <h2 class="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Join the waiting list</h2>
     <p class="mt-4 text-base text-white/70">
       Leave your details and we will let you know as soon as GarageCloud opens.
     </p>
@@ -66,7 +77,10 @@ import { BUSINESS_TYPES } from "../data/site";
     </form>
 
     <div id="waitlist-success" class="mt-10 hidden rounded-2xl bg-white p-8">
-      <p class="text-lg font-bold text-workshop-black">You are on the list.</p>
+      <div class="bg-gradient-primary mx-auto flex h-12 w-12 items-center justify-center rounded-full text-xl text-white" aria-hidden="true">
+        ✓
+      </div>
+      <p class="mt-4 text-lg font-bold text-workshop-black">You are on the list.</p>
       <p class="mt-2 text-sm text-muted-text">We will email you as soon as GarageCloud opens.</p>
     </div>
   </div>
