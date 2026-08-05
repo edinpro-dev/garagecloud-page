@@ -1,0 +1,44 @@
+---
+import { HERO } from "../data/site";
+---
+
+<section class="relative overflow-hidden">
+  <div
+    class="bg-gradient-primary pointer-events-none absolute -top-40 left-1/2 h-96 w-[60rem] -translate-x-1/2 rounded-full opacity-10 blur-3xl"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-4xl px-6 py-20 text-center sm:py-28">
+    <span
+      class="bg-gradient-primary inline-block rounded-full px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-wide text-white"
+    >
+      {HERO.badge}
+    </span>
+
+    <h1 class="mt-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
+      {HERO.heading}
+    </h1>
+
+    <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-body-text sm:text-xl">
+      {HERO.subheading}
+    </p>
+
+    <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a
+        href="#waiting-list"
+        class="bg-gradient-primary w-full rounded-full px-7 py-3.5 font-heading text-base font-bold text-white shadow-md transition-transform hover:scale-[1.03] sm:w-auto"
+      >
+        {HERO.primaryCta}
+      </a>
+      <a
+        href="#features"
+        class="w-full rounded-full border border-border-grey px-7 py-3.5 font-heading text-base font-bold text-workshop-black transition-colors hover:border-workshop-black sm:w-auto"
+      >
+        {HERO.secondaryCta}
+      </a>
+    </div>
+
+    <p class="mt-8 text-sm text-muted-text">{HERO.trustLine}</p>
+  </div>
+</section>

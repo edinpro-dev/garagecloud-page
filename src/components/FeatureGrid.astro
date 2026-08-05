@@ -1,0 +1,26 @@
+---
+import { FEATURES } from "../data/site";
+---
+
+<section id="features" class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Everything in one place</h2>
+    <p class="mt-4 text-lg text-body-text">
+      Built for garages and every trade around them, from tyres to locksmiths.
+    </p>
+  </div>
+
+  <div class="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      FEATURES.map((feature) => (
+        <div class="rounded-2xl border border-border-grey bg-canvas-white p-6 transition-shadow hover:shadow-md">
+          <div class="bg-section-grey flex h-11 w-11 items-center justify-center rounded-xl text-xl" aria-hidden="true">
+            {feature.icon}
+          </div>
+          <h3 class="mt-4 text-base font-bold text-workshop-black">{feature.title}</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-muted-text">{feature.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

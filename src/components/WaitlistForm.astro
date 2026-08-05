@@ -1,0 +1,89 @@
+---
+import { BUSINESS_TYPES } from "../data/site";
+---
+
+<section id="waiting-list" class="bg-gradient-dark py-20 sm:py-28">
+  <div class="mx-auto max-w-xl px-6 text-center">
+    <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Join the waiting list</h2>
+    <p class="mt-4 text-base text-white/70">
+      Leave your details and we will let you know as soon as GarageCloud opens.
+    </p>
+
+    <!-- TODO: wire submit to a real backend (Formspree / Cloudflare Pages Function / etc.) once the domain and form service are chosen -->
+    <form
+      id="waitlist-form"
+      class="mt-10 flex flex-col gap-4 rounded-2xl bg-white p-6 text-left sm:p-8"
+      novalidate
+    >
+      <div>
+        <label for="email" class="text-sm font-semibold text-workshop-black">Email address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="you@yourgarage.co.uk"
+          class="focus:border-coral-orange mt-1.5 w-full rounded-lg border border-border-grey px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-coral-orange"
+        />
+      </div>
+
+      <div>
+        <label for="business-name" class="text-sm font-semibold text-workshop-black">
+          Business name <span class="font-normal text-muted-text">(optional)</span>
+        </label>
+        <input
+          type="text"
+          id="business-name"
+          name="businessName"
+          placeholder="Your garage or workshop"
+          class="focus:border-coral-orange mt-1.5 w-full rounded-lg border border-border-grey px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-coral-orange"
+        />
+      </div>
+
+      <div>
+        <label for="business-type" class="text-sm font-semibold text-workshop-black">Business type</label>
+        <select
+          id="business-type"
+          name="businessType"
+          required
+          class="focus:border-coral-orange mt-1.5 w-full rounded-lg border border-border-grey bg-white px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-coral-orange"
+        >
+          <option value="" disabled selected>Select one</option>
+          {BUSINESS_TYPES.map((type) => <option value={type.value}>{type.label}</option>)}
+        </select>
+      </div>
+
+      <button
+        type="submit"
+        class="bg-gradient-primary mt-2 rounded-full px-6 py-3 font-heading text-sm font-bold text-white transition-transform hover:scale-[1.02]"
+      >
+        Join the waiting list
+      </button>
+
+      <p class="text-center text-xs text-muted-text">
+        We will only email you about the GarageCloud launch. No spam.
+      </p>
+    </form>
+
+    <div id="waitlist-success" class="mt-10 hidden rounded-2xl bg-white p-8">
+      <p class="text-lg font-bold text-workshop-black">You are on the list.</p>
+      <p class="mt-2 text-sm text-muted-text">We will email you as soon as GarageCloud opens.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("waitlist-form") as HTMLFormElement | null;
+  const success = document.getElementById("waitlist-success");
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    // TODO: send form data to a real waiting-list backend here.
+    form.classList.add("hidden");
+    success?.classList.remove("hidden");
+  });
+</script>

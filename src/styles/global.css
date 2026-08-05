@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource/plus-jakarta-sans/latin-700.css";
+@import "@fontsource/plus-jakarta-sans/latin-800.css";
+
+@theme inline {
+  --font-sans: "Inter Variable", sans-serif;
+  --font-heading: "Plus Jakarta Sans", sans-serif;
+
+  --color-coral-orange: #f04e23;
+  --color-deep-magenta: #c2185b;
+  --color-amber-orange: #ff9800;
+  --color-deep-purple: #7b1fa2;
+  --color-workshop-black: #1a1a1a;
+  --color-canvas-white: #ffffff;
+  --color-section-grey: #f8f8f8;
+  --color-body-text: #4a4a4a;
+  --color-muted-text: #6b7280;
+  --color-border-grey: #e5e7eb;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-body-text);
+    background: var(--color-canvas-white);
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    color: var(--color-workshop-black);
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary {
+    background-image: linear-gradient(135deg, #c2185b, #f04e23, #ff9800);
+  }
+
+  .bg-gradient-purple {
+    background-image: linear-gradient(135deg, #7b1fa2, #c2185b, #f04e23);
+  }
+
+  .bg-gradient-warm {
+    background-image: linear-gradient(135deg, #f04e23, #ff9800);
+  }
+
+  .bg-gradient-dark {
+    background-image: linear-gradient(135deg, #1a1a1a, #2d1b3d);
+  }
+
+  .text-gradient-primary {
+    background-image: linear-gradient(135deg, #c2185b, #f04e23, #ff9800);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
