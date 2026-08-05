@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { SITE } from "../data/site";
+---
+
+<BaseLayout
+  title="Privacy — GarageCloud"
+  description="How GarageCloud handles the details you share when you join the waiting list."
+>
+  <SiteHeader />
+  <main class="mx-auto max-w-2xl px-6 py-20 sm:py-28">
+    <span class="text-coral-orange font-heading text-xs font-bold uppercase tracking-widest">Privacy</span>
+    <h1 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">How we handle your details</h1>
+    <p class="mt-4 text-sm text-muted-text">This page covers the waiting list only. We will publish a full privacy policy before GarageCloud launches.</p>
+
+    <div class="mt-10 flex flex-col gap-8 text-body-text">
+      <div>
+        <h2 class="font-heading text-lg font-bold text-workshop-black">What we collect</h2>
+        <p class="mt-2 text-sm leading-relaxed">
+          When you join the waiting list, we collect your email address and, if you choose to share them, your
+          business name and business type.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-heading text-lg font-bold text-workshop-black">What we use it for</h2>
+        <p class="mt-2 text-sm leading-relaxed">
+          We use your details only to email you about the GarageCloud launch and early access. We do not use them
+          for anything else.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-heading text-lg font-bold text-workshop-black">Sharing</h2>
+        <p class="mt-2 text-sm leading-relaxed">
+          We do not sell or share your details with third parties.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-heading text-lg font-bold text-workshop-black">Removing your details</h2>
+        <p class="mt-2 text-sm leading-relaxed">
+          Email <a href={`mailto:${SITE.contactEmail}`} class="text-coral-orange font-semibold hover:underline">{SITE.contactEmail}</a> at
+          any time and we will remove you from the waiting list.
+        </p>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>

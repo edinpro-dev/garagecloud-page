@@ -157,6 +157,65 @@ export const PRICING_TIERS: PricingTier[] = [
   },
 ];
 
+export type Integration = { name: string };
+
+export const INTEGRATIONS: Integration[] = [
+  { name: "Xero" },
+  { name: "Sage" },
+  { name: "DVSA" },
+];
+
+export type Step = { title: string; description: string };
+
+export const HOW_IT_WORKS: Step[] = [
+  {
+    title: "Join the waiting list",
+    description: "Leave your email and a few details about your business. It takes under a minute.",
+  },
+  {
+    title: "We set up your workspace",
+    description: "When it is your turn, we configure your workshop board, invoicing and customer portal.",
+  },
+  {
+    title: "Go live",
+    description: "Start running jobs, invoices and reminders from one system instead of several.",
+  },
+];
+
+export type Faq = { question: string; answer: string };
+
+export const FAQS: Faq[] = [
+  {
+    question: "Is GarageCloud live yet?",
+    answer:
+      "Not yet. We are onboarding workshops from the waiting list first, then opening up more widely.",
+  },
+  {
+    question: "Do I need a card to join the waiting list?",
+    answer: "No. Joining the list is free and does not need any payment details.",
+  },
+  {
+    question: "Which trades is GarageCloud built for?",
+    answer:
+      "Garages, mobile tyre fitters, locksmiths, ECU remapping specialists and fleet services.",
+  },
+  {
+    question: "What's included in each plan?",
+    answer:
+      "Starter, Business and Professional cover everything from invoicing and reports to CRM, AI receptionists and diagnostics. See the full breakdown in the pricing section above.",
+  },
+  {
+    question: "Will pricing change before launch?",
+    answer:
+      "The plans shown above are our current pricing. If anything changes before launch, waiting list members will hear first.",
+  },
+  {
+    question: "Can I switch from my current system?",
+    answer:
+      "Yes. GarageCloud is built to replace the diary, spreadsheet and group chat you are using today. We will share onboarding steps closer to launch.",
+  },
+];
+
 export type Reason = { title: string; description: string };
 
 export const WHY_JOIN_NOW: Reason[] = [
