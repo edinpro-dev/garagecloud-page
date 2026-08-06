@@ -60,4 +60,31 @@
     -webkit-background-clip: text;
     color: transparent;
   }
+
+  .bg-road-texture {
+    background-image: repeating-linear-gradient(115deg, #1a1a1a 0px, #1a1a1a 2px, transparent 2px, transparent 16px);
+  }
+}
+
+@layer components {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 }

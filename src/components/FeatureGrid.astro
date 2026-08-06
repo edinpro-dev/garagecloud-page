@@ -10,7 +10,7 @@ const tints = [
 ---
 
 <section id="features" class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
-  <div class="mx-auto max-w-2xl text-center">
+  <div class="reveal mx-auto max-w-2xl text-center">
     <span class="text-coral-orange font-heading text-xs font-bold uppercase tracking-widest">What's included</span>
     <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Everything in one place</h2>
     <p class="mt-4 text-lg text-body-text">
@@ -21,7 +21,10 @@ const tints = [
   <div class="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
     {
       FEATURES.map((feature, index) => (
-        <div class="group rounded-2xl border border-border-grey bg-canvas-white p-6 transition-all duration-200 hover:-translate-y-1 hover:border-coral-orange/30 hover:shadow-lg hover:shadow-workshop-black/5">
+        <div
+          class="reveal group rounded-2xl border border-border-grey bg-canvas-white p-6 transition-all duration-200 hover:-translate-y-1 hover:border-coral-orange/30 hover:shadow-lg hover:shadow-workshop-black/5"
+          style={`transition-delay: ${(index % 3) * 80}ms`}
+        >
           <div
             class={`flex h-12 w-12 items-center justify-center rounded-full text-2xl transition-transform duration-200 group-hover:scale-110 ${tints[index % tints.length]}`}
             aria-hidden="true"
