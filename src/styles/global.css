@@ -87,4 +87,60 @@
       transition: none;
     }
   }
+
+  .article-prose h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .article-prose h3 {
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .article-prose p {
+    margin-top: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .article-prose ul {
+    margin-top: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .article-prose li {
+    line-height: 1.6;
+    padding-left: 1.4rem;
+    position: relative;
+  }
+
+  .article-prose li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background-image: linear-gradient(135deg, #c2185b, #f04e23, #ff9800);
+  }
+
+  .article-prose a {
+    color: var(--color-coral-orange);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .article-prose strong {
+    color: var(--color-workshop-black);
+    font-weight: 700;
+  }
 }

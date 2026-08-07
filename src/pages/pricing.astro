@@ -1,0 +1,47 @@
+---
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import PricingSection from "../components/PricingSection.astro";
+import FaqSection from "../components/FaqSection.astro";
+---
+
+<ArticleLayout
+  title="Garage Software Pricing UK | GarageCloud Plans From £50/month"
+  description="GarageCloud pricing: Starter at £50/month, Business at £100/month and Professional at £150/month, all excluding VAT. Compare plans and join the waiting list."
+  eyebrow="Pricing"
+  breadcrumbLabel="Pricing"
+  heading="Garage management software pricing"
+  lede="Three plans, priced per workshop rather than per vehicle or per job, so a busy week doesn't cost more than a quiet one."
+>
+  <p>
+    Most UK garage software is priced in a way that punishes growth: per user, per vehicle, or with usage add-ons
+    that only show up on the invoice. GarageCloud is priced per workshop instead — one flat monthly fee per plan,
+    with unlimited staff and unlimited invoices on every tier.
+  </p>
+
+  <h2>How the three plans differ</h2>
+  <p>
+    <strong>Starter</strong> at £50 a month covers the day-to-day running of a workshop: job cards, invoicing,
+    quotes, expenses, reporting and accounting software API access. <strong>Business</strong> at £100 a month adds
+    the tools that bring in more work — CRM, AI receptionist cover, websites and funnels, reputation management and
+    a visual sales pipeline. <strong>Professional</strong> at £150 a month adds AI-assisted diagnostic tools on top
+    of everything in Business.
+  </p>
+
+  <h2>What's not on the price list</h2>
+  <p>
+    No per-vehicle fee and no charge for extra staff logins on any plan. All prices exclude VAT. The plans below are
+    current planned pricing, confirmed at launch — waiting list members hear first if anything changes before then.
+  </p>
+
+  <h2>Which plan is right for a small workshop?</h2>
+  <p>
+    An independent garage or MOT centre running day-to-day operations without needing marketing tools usually fits
+    Starter. A workshop that wants to actively bring in new customers — through CRM, reviews and a booking funnel —
+    is better suited to Business. Professional makes sense once diagnostics are a regular part of the job mix.
+  </p>
+
+  <Fragment slot="full-width">
+    <PricingSection />
+    <FaqSection />
+  </Fragment>
+</ArticleLayout>

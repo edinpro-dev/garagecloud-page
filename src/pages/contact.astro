@@ -1,0 +1,30 @@
+---
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import { SITE } from "../data/site";
+---
+
+<ArticleLayout
+  title="Contact GarageCloud"
+  description="Get in touch with GarageCloud about the waiting list, pricing or partnering with us."
+  eyebrow="Contact"
+  breadcrumbLabel="Contact"
+  heading="Get in touch"
+  lede="GarageCloud is pre-launch, so the fastest way to reach us is email."
+>
+  <p>
+    For questions about the waiting list, pricing, or anything else, email
+    <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a> and we will get back to you.
+  </p>
+
+  <h2>Press and partnerships</h2>
+  <p>
+    Trade press, directories and potential integration partners can use the same address. Include a line on who you
+    are and what you are asking about, and it will get to the right place.
+  </p>
+
+  <h2>Already on the waiting list?</h2>
+  <p>
+    We will only email you about the GarageCloud launch. If you want to update your details or be removed from the
+    list, email us and we will sort it.
+  </p>
+</ArticleLayout>

@@ -1,0 +1,53 @@
+---
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import { FEATURES } from "../data/site";
+---
+
+<ArticleLayout
+  title="Garage Management Software UK | GarageCloud"
+  description="What garage management software does, what to look for, and how GarageCloud brings the workshop board, invoicing, inspections and reminders into one system for UK workshops."
+  eyebrow="Garage software"
+  breadcrumbLabel="Garage management software"
+  heading="Garage management software for UK workshops"
+  lede="Garage management software replaces the diary, the spreadsheet and the group chat with one system that a whole workshop can see."
+>
+  <p>
+    <strong>Garage management software is a system that brings a workshop's daily operations into one place:</strong>
+    bookings, job cards, bay scheduling, vehicle history, inspections, parts, invoicing and customer reminders. UK
+    systems also handle MOT reminders and DVLA or VRM vehicle lookups, since those are specific to how UK garages
+    are regulated and how vehicles are identified.
+  </p>
+
+  <h2>What a garage runs without it</h2>
+  <p>
+    Most workshops start with a paper diary or a shared spreadsheet for bookings, a separate system for invoicing,
+    and a WhatsApp group or a wall of sticky notes for job status. It works until the garage gets busy: bookings get
+    double-booked, MOT reminders get missed, and nobody can say which of three vehicles in bay 2 is actually ready.
+  </p>
+
+  <h2>What to look for in garage management software</h2>
+  <ul>
+    <li><strong>A live workshop board</strong> that shows every bay and every job without refreshing a spreadsheet.</li>
+    <li><strong>VRM lookup</strong> so a registration number pulls vehicle details automatically, not manual entry.</li>
+    <li><strong>Digital inspections</strong> customers can see and approve from their phone before work starts.</li>
+    <li><strong>MOT and service reminders</strong> that go out without someone remembering to send them.</li>
+    <li><strong>Invoicing that syncs to accounts</strong> — Xero or Sage — so nothing gets rekeyed by hand.</li>
+    <li><strong>Coverage for the trades around a garage</strong> — mobile tyres, locksmiths, ECU remapping — not just
+      the core bay work.</li>
+  </ul>
+
+  <h2>How GarageCloud approaches this</h2>
+  <p>
+    GarageCloud connects {FEATURES.length} modules into one system: {FEATURES.map((f) => f.title).join(", ")}. The
+    aim is a single login that covers what a workshop actually does day to day, rather than a core booking tool with
+    everything else bolted on as an add-on.
+  </p>
+
+  <h2>Is garage management software worth it for a small workshop?</h2>
+  <p>
+    The case is usually time, not headcount: a single system removes the double-entry between a booking diary, an
+    invoicing tool and an accounts package, and it stops MOT and service reminders depending on someone remembering
+    to send them. For a one or two-bay independent garage, that is often the difference between chasing paperwork in
+    the evening and not.
+  </p>
+</ArticleLayout>
