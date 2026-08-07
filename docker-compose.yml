@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        PUBLIC_GHL_WEBHOOK_URL: ${PUBLIC_GHL_WEBHOOK_URL}
     ports:
       - "80:80"
     restart: unless-stopped
