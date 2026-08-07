@@ -64,6 +64,20 @@ import { BUSINESS_TYPES } from "../data/site";
         </select>
       </div>
 
+      <label class="flex items-start gap-2.5 text-xs text-muted-text">
+        <input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          required
+          class="accent-coral-orange mt-0.5 h-4 w-4 shrink-0 rounded border-border-grey"
+        />
+        <span>
+          I agree to be emailed about the GarageCloud launch. Read our
+          <a href="/privacy" class="text-coral-orange font-semibold hover:underline">privacy page</a>.
+        </span>
+      </label>
+
       <button
         type="submit"
         class="bg-gradient-primary mt-2 rounded-full px-6 py-3 font-heading text-sm font-bold text-white transition-transform hover:scale-[1.02]"

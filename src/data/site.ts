@@ -2,14 +2,15 @@ export const SITE = {
   name: "GarageCloud",
   domain: "garagecloud.co",
   strapline: "Run your workshop without the paperwork.",
+  title: "Garage Management Software for UK Workshops | GarageCloud",
   description:
-    "GarageCloud brings the workshop board, invoicing, inspections, reminders and accounts into one system. Join the waiting list for early access.",
+    "UK garage management software with a live workshop board, VRM lookup, MOT reminders, photo inspections and invoicing that syncs to Xero and Sage. From £50 per month. Join the waiting list.",
   contactEmail: "hello@garagecloud.co",
 };
 
 export const HERO = {
   badge: "Launching soon",
-  heading: "Run your workshop without the paperwork.",
+  heading: "Garage management software that runs your whole workshop, without the paperwork.",
   subheading:
     "The workshop board, invoicing, inspections, reminders and accounts, connected in one system instead of spread across a diary, a spreadsheet and a group chat.",
   primaryCta: "Join the waiting list",
@@ -152,7 +153,7 @@ export const PRICING_TIERS: PricingTier[] = [
     tagline: "Everything in Business, plus diagnostics.",
     features: [
       "Everything in Business",
-      "The UK's most advanced AI diagnostic software",
+      "AI-assisted diagnostic tools",
     ],
   },
 ];
@@ -186,13 +187,19 @@ export type Faq = { question: string; answer: string };
 
 export const FAQS: Faq[] = [
   {
-    question: "Is GarageCloud live yet?",
+    question: "What is garage management software?",
     answer:
-      "Not yet. We are onboarding workshops from the waiting list first, then opening up more widely.",
+      "Garage management software is a system that brings a workshop's daily operations into one place: bookings, job cards, bay scheduling, vehicle history, inspections, parts, invoicing and customer reminders. UK systems also handle MOT reminders and DVLA or VRM vehicle lookups.",
   },
   {
-    question: "Do I need a card to join the waiting list?",
-    answer: "No. Joining the list is free and does not need any payment details.",
+    question: "How much does GarageCloud cost?",
+    answer:
+      "GarageCloud has three plans: Starter at £50 per month, Business at £100 per month and Professional at £150 per month, all excluding VAT. There is a 14 day free trial at launch and no hidden add-ons.",
+  },
+  {
+    question: "What's included in each plan?",
+    answer:
+      "Starter, Business and Professional cover everything from invoicing and reports to CRM, AI receptionists and diagnostics. See the full breakdown in the pricing section above.",
   },
   {
     question: "Which trades is GarageCloud built for?",
@@ -200,9 +207,18 @@ export const FAQS: Faq[] = [
       "Garages, mobile tyre fitters, locksmiths, ECU remapping specialists and fleet services.",
   },
   {
-    question: "What's included in each plan?",
+    question: "Does GarageCloud work with Xero and Sage?",
     answer:
-      "Starter, Business and Professional cover everything from invoicing and reports to CRM, AI receptionists and diagnostics. See the full breakdown in the pricing section above.",
+      "Yes. From launch, invoices raised from a finished job card will sync to Xero or Sage, so the workshop and the accounts stay in step without rekeying.",
+  },
+  {
+    question: "Is GarageCloud live yet?",
+    answer:
+      "Not yet. We are onboarding workshops from the waiting list first, then opening up more widely.",
+  },
+  {
+    question: "Do I need a card to join the waiting list?",
+    answer: "No. Joining the list is free and does not need any payment details.",
   },
   {
     question: "Will pricing change before launch?",
