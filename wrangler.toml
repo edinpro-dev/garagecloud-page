@@ -3,3 +3,28 @@ compatibility_date = "2024-01-01"
 
 [assets]
 directory = "./dist"
+
+[[routes]]
+pattern = "garagecloud.uk"
+custom_domain = true
+
+[[routes]]
+pattern = "www.garagecloud.uk"
+custom_domain = true
+
+[[routes]]
+pattern = "garagecloud.co"
+custom_domain = true
+
+[[routes]]
+pattern = "www.garagecloud.co"
+custom_domain = true
+
+[[routes]]
+pattern = "garage-cloud.co.uk"
+custom_domain = true
+
+[[routes]]
+pattern = "www.garage-cloud.co.uk"
+custom_domain = true
+
