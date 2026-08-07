@@ -1,7 +1,3 @@
----
-import { BUSINESS_TYPES } from "../data/site";
----
-
 <section id="waiting-list" class="bg-gradient-dark relative overflow-hidden py-20 sm:py-28">
   <div
     class="bg-gradient-primary pointer-events-none absolute -bottom-32 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
@@ -20,149 +16,30 @@ import { BUSINESS_TYPES } from "../data/site";
       Leave your details and we will let you know as soon as GarageCloud opens.
     </p>
 
-    <form
-      id="waitlist-form"
-      class="mt-10 flex flex-col gap-4 rounded-2xl bg-white p-6 text-left sm:p-8"
-      novalidate
-    >
-      <div>
-        <label for="email" class="text-sm font-semibold text-workshop-black">Email address</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          placeholder="you@yourgarage.co.uk"
-          class="focus:border-coral-orange mt-1.5 w-full rounded-lg border border-border-grey px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-coral-orange"
-        />
-      </div>
-
-      <div>
-        <label for="business-name" class="text-sm font-semibold text-workshop-black">
-          Business name <span class="font-normal text-muted-text">(optional)</span>
-        </label>
-        <input
-          type="text"
-          id="business-name"
-          name="businessName"
-          placeholder="Your garage or workshop"
-          class="focus:border-coral-orange mt-1.5 w-full rounded-lg border border-border-grey px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-coral-orange"
-        />
-      </div>
-
-      <div>
-        <label for="business-type" class="text-sm font-semibold text-workshop-black">Business type</label>
-        <select
-          id="business-type"
-          name="businessType"
-          required
-          class="focus:border-coral-orange mt-1.5 w-full rounded-lg border border-border-grey bg-white px-4 py-2.5 text-sm outline-none focus:ring-1 focus:ring-coral-orange"
-        >
-          <option value="" disabled selected>Select one</option>
-          {BUSINESS_TYPES.map((type) => <option value={type.value}>{type.label}</option>)}
-        </select>
-      </div>
-
-      <label class="flex items-start gap-2.5 text-xs text-muted-text">
-        <input
-          type="checkbox"
-          id="consent"
-          name="consent"
-          required
-          class="accent-coral-orange mt-0.5 h-4 w-4 shrink-0 rounded border-border-grey"
-        />
-        <span>
-          I agree to be emailed about the GarageCloud launch. Read our
-          <a href="/privacy" class="text-coral-orange font-semibold hover:underline">privacy page</a>.
-        </span>
-      </label>
-
-      <button
-        type="submit"
-        id="waitlist-submit"
-        class="bg-gradient-primary mt-2 rounded-full px-6 py-3 font-heading text-sm font-bold text-white transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
-      >
-        Join the waiting list
-      </button>
-
-      <p id="waitlist-error" class="hidden text-center text-xs font-semibold text-coral-orange" role="alert"></p>
-
-      <p class="text-center text-xs text-muted-text">
-        We will only email you about the GarageCloud launch. No spam.
-      </p>
-    </form>
-
-    <div id="waitlist-success" class="mt-10 hidden rounded-2xl bg-white p-8">
-      <div class="bg-gradient-primary mx-auto flex h-12 w-12 items-center justify-center rounded-full text-xl text-white" aria-hidden="true">
-        ✓
-      </div>
-      <p class="mt-4 text-lg font-bold text-workshop-black">You are on the list.</p>
-      <p class="mt-2 text-sm text-muted-text">We will email you as soon as GarageCloud opens.</p>
+    <div class="mt-10 overflow-hidden rounded-2xl bg-white" style="min-height: 436px">
+      <iframe
+        src="https://links.edinpro.co.uk/widget/form/AE1hYyVQNf8NXq5m41q1"
+        style="width:100%;height:436px;border:none;border-radius:8px"
+        id="inline-AE1hYyVQNf8NXq5m41q1"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Form 3"
+        data-height="436"
+        data-layout-iframe-id="inline-AE1hYyVQNf8NXq5m41q1"
+        data-form-id="AE1hYyVQNf8NXq5m41q1"
+        title="Join the GarageCloud waiting list"
+      ></iframe>
     </div>
+
+    <p class="mt-6 text-center text-xs text-white/50">
+      We will only email you about the GarageCloud launch. No spam.
+    </p>
   </div>
 </section>
 
-<script>
-  const GHL_WEBHOOK_URL = import.meta.env.PUBLIC_GHL_WEBHOOK_URL as string | undefined;
-
-  const form = document.getElementById("waitlist-form") as HTMLFormElement | null;
-  const success = document.getElementById("waitlist-success");
-  const submitButton = document.getElementById("waitlist-submit") as HTMLButtonElement | null;
-  const errorMessage = document.getElementById("waitlist-error");
-
-  form?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    errorMessage?.classList.add("hidden");
-
-    if (!GHL_WEBHOOK_URL) {
-      // No webhook configured yet (e.g. local dev) — TODO: set PUBLIC_GHL_WEBHOOK_URL, see .env.example.
-      console.warn("PUBLIC_GHL_WEBHOOK_URL is not set — skipping submission and showing success state.");
-      form.classList.add("hidden");
-      success?.classList.remove("hidden");
-      return;
-    }
-
-    const data = new FormData(form);
-    const payload = {
-      email: data.get("email"),
-      businessName: data.get("businessName") || null,
-      businessType: data.get("businessType"),
-      consent: data.get("consent") === "on",
-      source: "garagecloud-waiting-list",
-      submittedAt: new Date().toISOString(),
-    };
-
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = "Joining...";
-    }
-
-    try {
-      const response = await fetch(GHL_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) throw new Error(`Webhook responded with ${response.status}`);
-
-      form.classList.add("hidden");
-      success?.classList.remove("hidden");
-    } catch (error) {
-      console.error("Waiting list submission failed:", error);
-      if (errorMessage) {
-        errorMessage.textContent = "Something went wrong. Please try again, or email hello@garagecloud.co.";
-        errorMessage.classList.remove("hidden");
-      }
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = "Join the waiting list";
-      }
-    }
-  });
-</script>
+<script src="https://links.edinpro.co.uk/js/form_embed.js"></script>

@@ -3,9 +3,6 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 
-ARG PUBLIC_GHL_WEBHOOK_URL
-ENV PUBLIC_GHL_WEBHOOK_URL=$PUBLIC_GHL_WEBHOOK_URL
-
 COPY package.json package-lock.json ./
 RUN npm ci
 
