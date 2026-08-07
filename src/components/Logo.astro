@@ -6,51 +6,19 @@ interface Props {
 }
 
 const { showWordmark = true, iconSize = 36, class: className = "" } = Astro.props;
+
+const ICON_ASPECT_RATIO = 232 / 171;
+const iconWidth = Math.round(iconSize * ICON_ASPECT_RATIO);
 ---
 
 <div class:list={["inline-flex items-center gap-2.5", className]}>
-  <svg
-    width={iconSize}
+  <img
+    src="/logo-icon.png"
+    alt="GarageCloud logo"
+    width={iconWidth}
     height={iconSize}
-    viewBox="0 0 100 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    role="img"
-    aria-label="GarageCloud logo"
-  >
-    <defs>
-      <linearGradient id="gc-cloud-gradient" x1="10" y1="85" x2="95" y2="10" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#7B1FA2"></stop>
-        <stop offset="0.5" stop-color="#C2185B"></stop>
-        <stop offset="0.78" stop-color="#F04E23"></stop>
-        <stop offset="1" stop-color="#FF9800"></stop>
-      </linearGradient>
-      <clipPath id="gc-cloud-clip">
-        <path
-          d="M28 78C15.8 78 6 68.6 6 57C6 46.2 14.5 37.3 25.4 36.1C26.6 22.7 38.3 12 52.5 12C64.8 12 75.3 20.1 79 31.3C89.6 32.9 97.5 41.7 97.5 52.2C97.5 63.9 87.9 73.4 76 73.4C74.6 76.9 71.7 79.7 68 81C65.5 84.8 61 87.3 55.9 87.3C51.6 87.3 47.8 85.5 45.2 82.6C42.6 84.4 39.4 85.4 36 85.4C31.9 85.4 28.1 83.9 25.2 81.3"
-          fill="white"
-        ></path>
-      </clipPath>
-    </defs>
-
-    <path
-      d="M28 78C15.8 78 6 68.6 6 57C6 46.2 14.5 37.3 25.4 36.1C26.6 22.7 38.3 12 52.5 12C64.8 12 75.3 20.1 79 31.3C89.6 32.9 97.5 41.7 97.5 52.2C97.5 63.9 87.9 73.4 76 73.4C74.6 76.9 71.7 79.7 68 81C65.5 84.8 61 87.3 55.9 87.3C51.6 87.3 47.8 85.5 45.2 82.6C42.6 84.4 39.4 85.4 36 85.4C31.9 85.4 28.1 83.9 25.2 81.3"
-      fill="url(#gc-cloud-gradient)"
-    ></path>
-
-    <g clip-path="url(#gc-cloud-clip)">
-      <polygon points="30,95 50,20 62,20 58,95" fill="#F8F8F8" opacity="0.92"></polygon>
-      <line x1="46" y1="90" x2="55" y2="30" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="6 6"></line>
-      <rect x="33" y="82" width="6" height="3" rx="1" fill="#C2185B" transform="rotate(-8 33 82)"></rect>
-      <rect x="37" y="70" width="6" height="3" rx="1" fill="#C2185B" transform="rotate(-8 37 70)"></rect>
-      <rect x="41" y="58" width="6" height="3" rx="1" fill="#C2185B" transform="rotate(-8 41 58)"></rect>
-      <rect x="45" y="46" width="5" height="2.6" rx="1" fill="#C2185B" transform="rotate(-8 45 46)"></rect>
-      <rect x="53" y="82" width="6" height="3" rx="1" fill="#C2185B" transform="rotate(8 53 82)"></rect>
-      <rect x="52" y="70" width="6" height="3" rx="1" fill="#C2185B" transform="rotate(8 52 70)"></rect>
-      <rect x="51" y="58" width="6" height="3" rx="1" fill="#C2185B" transform="rotate(8 51 58)"></rect>
-      <rect x="50" y="46" width="5" height="2.6" rx="1" fill="#C2185B" transform="rotate(8 50 46)"></rect>
-    </g>
-  </svg>
+    style={`height: ${iconSize}px; width: ${iconWidth}px;`}
+  />
 
   {
     showWordmark && (

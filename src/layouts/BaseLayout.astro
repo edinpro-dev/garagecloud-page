@@ -22,7 +22,7 @@ const graphSchema = {
       "@id": orgId,
       name: SITE.name,
       url: siteURL,
-      logo: new URL("/favicon.svg", Astro.site).toString(),
+      logo: new URL("/logo-full.png", Astro.site).toString(),
       email: SITE.contactEmail,
       description:
         "GarageCloud is UK garage management software for independent garages, MOT centres, mobile tyre fitters, auto locksmiths, ECU remapping specialists and fleet services.",
@@ -72,7 +72,7 @@ const graphSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="canonical" href={canonicalURL} />
 
     <title>{title}</title>
