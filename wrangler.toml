@@ -9,22 +9,11 @@ pattern = "garagecloud.uk"
 custom_domain = true
 
 [[routes]]
-pattern = "www.garagecloud.uk"
-custom_domain = true
-
-[[routes]]
 pattern = "garagecloud.co"
-custom_domain = true
-
-[[routes]]
-pattern = "www.garagecloud.co"
 custom_domain = true
 
 [[routes]]
 pattern = "garage-cloud.co.uk"
 custom_domain = true
 
-[[routes]]
-pattern = "www.garage-cloud.co.uk"
-custom_domain = true
 
