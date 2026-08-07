@@ -20,7 +20,6 @@ import { BUSINESS_TYPES } from "../data/site";
       Leave your details and we will let you know as soon as GarageCloud opens.
     </p>
 
-    <!-- TODO: wire submit to a real backend (Formspree / Cloudflare Pages Function / etc.) once the domain and form service are chosen -->
     <form
       id="waitlist-form"
       class="mt-10 flex flex-col gap-4 rounded-2xl bg-white p-6 text-left sm:p-8"
@@ -80,10 +79,13 @@ import { BUSINESS_TYPES } from "../data/site";
 
       <button
         type="submit"
-        class="bg-gradient-primary mt-2 rounded-full px-6 py-3 font-heading text-sm font-bold text-white transition-transform hover:scale-[1.02]"
+        id="waitlist-submit"
+        class="bg-gradient-primary mt-2 rounded-full px-6 py-3 font-heading text-sm font-bold text-white transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
       >
         Join the waiting list
       </button>
+
+      <p id="waitlist-error" class="hidden text-center text-xs font-semibold text-coral-orange" role="alert"></p>
 
       <p class="text-center text-xs text-muted-text">
         We will only email you about the GarageCloud launch. No spam.
@@ -101,17 +103,66 @@ import { BUSINESS_TYPES } from "../data/site";
 </section>
 
 <script>
+  const GHL_WEBHOOK_URL = import.meta.env.PUBLIC_GHL_WEBHOOK_URL as string | undefined;
+
   const form = document.getElementById("waitlist-form") as HTMLFormElement | null;
   const success = document.getElementById("waitlist-success");
+  const submitButton = document.getElementById("waitlist-submit") as HTMLButtonElement | null;
+  const errorMessage = document.getElementById("waitlist-error");
 
-  form?.addEventListener("submit", (event) => {
+  form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    // TODO: send form data to a real waiting-list backend here.
-    form.classList.add("hidden");
-    success?.classList.remove("hidden");
+
+    errorMessage?.classList.add("hidden");
+
+    if (!GHL_WEBHOOK_URL) {
+      // No webhook configured yet (e.g. local dev) — TODO: set PUBLIC_GHL_WEBHOOK_URL, see .env.example.
+      console.warn("PUBLIC_GHL_WEBHOOK_URL is not set — skipping submission and showing success state.");
+      form.classList.add("hidden");
+      success?.classList.remove("hidden");
+      return;
+    }
+
+    const data = new FormData(form);
+    const payload = {
+      email: data.get("email"),
+      businessName: data.get("businessName") || null,
+      businessType: data.get("businessType"),
+      consent: data.get("consent") === "on",
+      source: "garagecloud-waiting-list",
+      submittedAt: new Date().toISOString(),
+    };
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Joining...";
+    }
+
+    try {
+      const response = await fetch(GHL_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) throw new Error(`Webhook responded with ${response.status}`);
+
+      form.classList.add("hidden");
+      success?.classList.remove("hidden");
+    } catch (error) {
+      console.error("Waiting list submission failed:", error);
+      if (errorMessage) {
+        errorMessage.textContent = "Something went wrong. Please try again, or email hello@garagecloud.co.";
+        errorMessage.classList.remove("hidden");
+      }
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "Join the waiting list";
+      }
+    }
   });
 </script>
