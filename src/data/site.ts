@@ -8,6 +8,24 @@ export const SITE = {
   contactEmail: "hello@garagecloud.co",
 };
 
+// TODO: replace bracketed placeholders before publishing the privacy policy or terms of service.
+export const LEGAL = {
+  entityName: "Jedox Group Limited",
+  registeredAddress: "11 Muir Place, Houstoun Industrial Estate, Livingston, Scotland, EH54 5BF",
+  companyNumber: "SC696315",
+  vatNumber: "GB 473 8305 83",
+  icoNumber: "ZC071964",
+  jurisdiction: "Scotland",
+  hostingProvider: "AWS",
+  monitoringProvider: "AWS",
+  billingProvider: "Stripe",
+  privacyEmail: "privacy@garagecloud.co",
+  legalEmail: "legal@garagecloud.co",
+  securityEmail: "security@garagecloud.co",
+  lastUpdated: "12 August 2026",
+  version: "1.0",
+};
+
 export const HERO = {
   badge: "Launching soon",
   heading: "Garage management software that runs your whole workshop, without the paperwork.",

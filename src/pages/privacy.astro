@@ -1,52 +1,406 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import SiteHeader from "../components/SiteHeader.astro";
-import SiteFooter from "../components/SiteFooter.astro";
-import { SITE } from "../data/site";
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import { SITE, LEGAL } from "../data/site";
 ---
 
-<BaseLayout
-  title="Privacy — GarageCloud"
-  description="How GarageCloud handles the details you share when you join the waiting list."
+<ArticleLayout
+  title="Privacy Policy — GarageCloud"
+  description="How GarageCloud collects, uses and protects personal data, including data accessed through Google APIs."
+  eyebrow="Privacy"
+  breadcrumbLabel="Privacy"
+  heading="Privacy Policy"
+  lede={`Last updated ${LEGAL.lastUpdated} · Version ${LEGAL.version}. This explains what personal data GarageCloud collects, why we collect it, who we share it with, and what rights you have.`}
 >
-  <SiteHeader />
-  <main class="mx-auto max-w-2xl px-6 py-20 sm:py-28">
-    <span class="text-coral-orange font-heading text-xs font-bold uppercase tracking-widest">Privacy</span>
-    <h1 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">How we handle your details</h1>
-    <p class="mt-4 text-sm text-muted-text">This page covers the waiting list only. We will publish a full privacy policy before GarageCloud launches.</p>
+  <div class="callout callout-blue">
+    <p>
+      <strong>If you have only joined the waiting list</strong>, sections 3–5 and 12–16 apply to you. The rest
+      applies once you begin using the GarageCloud application.
+    </p>
+  </div>
 
-    <div class="mt-10 flex flex-col gap-8 text-body-text">
-      <div>
-        <h2 class="font-heading text-lg font-bold text-workshop-black">What we collect</h2>
-        <p class="mt-2 text-sm leading-relaxed">
-          When you join the waiting list, we collect your email address and, if you choose to share them, your
-          business name and business type.
-        </p>
-      </div>
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#roles">Controller and processor roles</a></li>
+      <li><a href="#collect">Data we collect</a></li>
+      <li><a href="#use">How we use data</a></li>
+      <li><a href="#lawful">Lawful bases</a></li>
+      <li><a href="#google">Google user data</a></li>
+      <li><a href="#third">Third-party services</a></li>
+      <li><a href="#share">Sharing and disclosure</a></li>
+      <li><a href="#transfers">International transfers</a></li>
+      <li><a href="#retention">Retention</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#cookies">Cookies</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
 
-      <div>
-        <h2 class="font-heading text-lg font-bold text-workshop-black">What we use it for</h2>
-        <p class="mt-2 text-sm leading-relaxed">
-          We use your details only to email you about the GarageCloud launch and early access. We do not use them
-          for anything else.
-        </p>
-      </div>
+  <h2 id="who">1. Who we are</h2>
+  <p>
+    GarageCloud ("GarageCloud", "we", "us") provides workshop management software to garages, MOT centres, mobile
+    technicians, vehicle service businesses and fleet operators in the United Kingdom.
+  </p>
+  <p>For the purposes of UK data protection law, our details are:</p>
+  <div class="callout">
+    <p><strong><span class="placeholder">{LEGAL.entityName}</span></strong></p>
+    <p><span class="placeholder">{LEGAL.registeredAddress}</span></p>
+    <p>Company number: <span class="placeholder">{LEGAL.companyNumber}</span></p>
+    <p>ICO registration number: <span class="placeholder">{LEGAL.icoNumber}</span></p>
+    <p>Email: <a href={`mailto:${LEGAL.privacyEmail}`}>{LEGAL.privacyEmail}</a></p>
+    <p>General enquiries: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
+  </div>
 
-      <div>
-        <h2 class="font-heading text-lg font-bold text-workshop-black">Sharing</h2>
-        <p class="mt-2 text-sm leading-relaxed">
-          We do not sell or share your details with third parties.
-        </p>
-      </div>
+  <h2 id="roles">2. Controller and processor roles</h2>
+  <p>GarageCloud acts in two different capacities depending on the data involved.</p>
+  <h3>We are the controller for</h3>
+  <ul>
+    <li>Account and billing data belonging to businesses that subscribe to GarageCloud</li>
+    <li>Data about individual users of our application — names, email addresses, roles, login records</li>
+    <li>Website visitor data and support correspondence</li>
+  </ul>
+  <h3>We are the processor for</h3>
+  <ul>
+    <li>Data our customers enter about <strong>their own</strong> customers, vehicles, jobs, invoices and communications</li>
+  </ul>
+  <p>
+    Where a garage uses GarageCloud to store information about a member of the public, that garage is the data
+    controller and GarageCloud is the processor acting on its documented instructions. If you are a customer of a
+    garage and wish to exercise your rights over that data, please contact the garage directly. We will assist them
+    in responding.
+  </p>
 
-      <div>
-        <h2 class="font-heading text-lg font-bold text-workshop-black">Removing your details</h2>
-        <p class="mt-2 text-sm leading-relaxed">
-          Email <a href={`mailto:${SITE.contactEmail}`} class="text-coral-orange font-semibold hover:underline">{SITE.contactEmail}</a> at
-          any time and we will remove you from the waiting list.
-        </p>
-      </div>
-    </div>
-  </main>
-  <SiteFooter />
-</BaseLayout>
+  <h2 id="collect">3. Data we collect</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>What it includes</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Account data</strong></td>
+          <td>Business name, trading address, VAT number, contact name, email address, telephone number, password (stored hashed)</td>
+          <td>You, at sign-up</td>
+        </tr>
+        <tr>
+          <td><strong>User data</strong></td>
+          <td>Staff names, work email addresses, assigned roles and permissions, login timestamps, IP address at login</td>
+          <td>You or your administrator</td>
+        </tr>
+        <tr>
+          <td><strong>Billing data</strong></td>
+          <td>Subscription plan, active modules, billing address, invoice history, partial card details (last four digits and expiry only)</td>
+          <td>You and our payment processor</td>
+        </tr>
+        <tr>
+          <td><strong>Workshop content</strong></td>
+          <td>Your customer records, vehicle records, registrations, job cards, inspection results, photographs, video, estimates, invoices and messages</td>
+          <td>Entered by you</td>
+        </tr>
+        <tr>
+          <td><strong>Vehicle data</strong></td>
+          <td>Make, model, year, fuel type, colour, MOT status and MOT history, retrieved by registration mark</td>
+          <td>DVSA and DVLA public APIs</td>
+        </tr>
+        <tr>
+          <td><strong>Connected service data</strong></td>
+          <td>Data you authorise us to access from third-party accounts you connect — see sections 6 and 7</td>
+          <td>The service, with your consent</td>
+        </tr>
+        <tr>
+          <td><strong>Technical data</strong></td>
+          <td>IP address, browser type and version, device type, operating system, pages viewed, timestamps, error diagnostics</td>
+          <td>Collected automatically</td>
+        </tr>
+        <tr>
+          <td><strong>Support data</strong></td>
+          <td>Correspondence with our support team, including any attachments you send</td>
+          <td>You</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>We do not deliberately collect special category data. Please do not enter health information, or any other special category data, into free-text fields.</p>
+
+  <h2 id="use">4. How we use data</h2>
+  <ul>
+    <li>To provide, operate and maintain the GarageCloud application</li>
+    <li>To authenticate users and control access to your workspace</li>
+    <li>To process subscription payments and issue invoices</li>
+    <li>To deliver features you have enabled, including sending communications to your customers on your behalf</li>
+    <li>To retrieve vehicle and MOT information when you enter a registration mark</li>
+    <li>To provide technical support and respond to your enquiries</li>
+    <li>To monitor performance, diagnose faults and improve reliability</li>
+    <li>To detect, investigate and prevent fraud, abuse and security incidents</li>
+    <li>To comply with our legal and regulatory obligations</li>
+    <li>To send service messages about outages, billing and material changes to the service</li>
+  </ul>
+  <p>
+    We do not sell personal data. We do not use your workshop content, or data from any connected account, to
+    train machine learning or artificial intelligence models.
+  </p>
+
+  <h2 id="lawful">5. Lawful bases</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Purpose</th>
+          <th>Lawful basis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Providing the service under our agreement with you</td><td>Performance of a contract</td></tr>
+        <tr><td>Taking payment and managing subscriptions</td><td>Performance of a contract</td></tr>
+        <tr><td>Security, fraud prevention and service improvement</td><td>Legitimate interests — operating a secure and reliable service</td></tr>
+        <tr><td>Accessing a connected third-party account</td><td>Consent, which you may withdraw at any time</td></tr>
+        <tr><td>Marketing emails to prospective customers</td><td>Consent, or legitimate interests where permitted for existing business customers</td></tr>
+        <tr><td>Retaining financial records</td><td>Legal obligation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="google">6. Google user data</h2>
+  <p>
+    GarageCloud offers optional integrations with Google services. These are entirely optional. If you do not
+    connect a Google account, none of this section applies to you.
+  </p>
+
+  <h3>6.1 What we request and why</h3>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Scope requested</th>
+          <th>Why we need it</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>userinfo.email</code><br /><code>userinfo.profile</code></td>
+          <td>To identify which Google account has been connected and display it in your settings, so you can confirm you have linked the right one.</td>
+        </tr>
+        <tr>
+          <td><code>gmail.send</code></td>
+          <td>To send job updates, inspection reports, estimates and invoices to your customers from your own business email address, so that replies come back to you rather than to us. This scope permits sending only. It does not permit reading your mailbox.</td>
+        </tr>
+        <tr>
+          <td><code>calendar.events</code></td>
+          <td>Only if you enable calendar sync. To create, update and remove GarageCloud bookings in a calendar you nominate, so your workshop diary matches your Google Calendar.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>We request the narrowest scopes that allow each feature to work. If you enable only some features, we request only the scopes those features require.</p>
+
+  <h3>6.2 How we store and handle it</h3>
+  <ul>
+    <li>OAuth access and refresh tokens are encrypted at rest and are used solely to perform actions you have configured.</li>
+    <li>We store a record of messages sent on your behalf — recipient, subject, timestamp and delivery status — so you have an audit trail against the relevant job or invoice.</li>
+    <li>Where calendar sync is enabled, we store the event identifiers needed to keep bookings in step.</li>
+    <li>We do not download, index or retain the contents of your mailbox.</li>
+  </ul>
+
+  <div class="callout callout-amber">
+    <h3 style="margin-top:0">6.3 Limited Use disclosure</h3>
+    <p>
+      GarageCloud's use and transfer of information received from Google APIs to any other app will adhere to the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>,
+      including the Limited Use requirements.
+    </p>
+    <p>Specifically, we confirm that we:</p>
+    <ul>
+      <li><strong>do not</strong> use Google user data for serving advertisements;</li>
+      <li><strong>do not</strong> sell Google user data;</li>
+      <li><strong>do not</strong> transfer Google user data to third parties except as necessary to provide or improve the features you have enabled, to comply with applicable law, or as part of a merger or acquisition;</li>
+      <li><strong>do not</strong> use Google user data to develop, improve or train generalised artificial intelligence or machine learning models;</li>
+      <li><strong>do not</strong> allow humans to read Google user data unless we have your explicit consent for specific messages, it is necessary for security purposes such as investigating abuse, it is required to comply with applicable law, or the data has been aggregated and anonymised.</li>
+    </ul>
+  </div>
+
+  <h3>6.4 Revoking access</h3>
+  <p>
+    You may disconnect a Google account at any time from <strong>Settings → Integrations</strong> within GarageCloud.
+    You may also revoke access directly at
+    <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.
+  </p>
+  <p>
+    When access is revoked, we delete the stored OAuth tokens within 30 days. Records of messages already sent are
+    retained as part of your business records, as described in section 10.
+  </p>
+
+  <h2 id="third">7. Third-party services</h2>
+  <p>
+    GarageCloud can connect to services you already use. In each case you sign in to that provider directly and hold
+    your own agreement with them. We recommend reading their privacy policies.
+  </p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Purpose</th>
+          <th>Data involved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Stripe, PayPal, Square, SumUp, Klarna</td><td>Payment processing</td><td>Transaction amounts, references, payment status. Full card details are handled by the provider and never reach our servers.</td></tr>
+        <tr><td>Xero, QuickBooks, Sage, FreeAgent</td><td>Accounting and VAT</td><td>Invoices, credit notes, contact records, payment status</td></tr>
+        <tr><td>Google, Microsoft 365, other SMTP providers</td><td>Sending email</td><td>Recipient address, subject, message content, delivery status</td></tr>
+        <tr><td>Twilio</td><td>SMS messaging</td><td>Mobile number, message content, delivery status</td></tr>
+        <tr><td>GoHighLevel</td><td>Online booking and CRM</td><td>Booking details, contact records</td></tr>
+        <tr><td>What3Words</td><td>Locating mobile jobs</td><td>Three-word address, approximate coordinates</td></tr>
+        <tr><td>DVSA and DVLA</td><td>Vehicle and MOT lookup</td><td>Vehicle registration mark submitted; vehicle and MOT data returned</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>We also use the following providers to run the service itself:</p>
+  <ul>
+    <li><strong>Cloud hosting and storage</strong> — <span class="placeholder">{LEGAL.hostingProvider}</span>, United Kingdom / European Economic Area</li>
+    <li><strong>Error monitoring and application logging</strong> — <span class="placeholder">{LEGAL.monitoringProvider}</span></li>
+    <li><strong>Subscription billing</strong> — <span class="placeholder">{LEGAL.billingProvider}</span></li>
+  </ul>
+
+  <h2 id="share">8. Sharing and disclosure</h2>
+  <p>We share personal data only in these circumstances:</p>
+  <ul>
+    <li><strong>With service providers</strong> listed above, acting as our processors under written contract</li>
+    <li><strong>With services you connect</strong>, limited to what those features require</li>
+    <li><strong>Where the law requires it</strong> — for example in response to a valid court order or regulatory demand</li>
+    <li><strong>To protect rights and safety</strong> — where necessary to investigate fraud, abuse or a security incident</li>
+    <li><strong>In a corporate transaction</strong> — if GarageCloud is involved in a merger, acquisition or sale of assets, in which case we will notify you before your data becomes subject to a different privacy policy</li>
+  </ul>
+  <p>We do not sell personal data, and we do not share it with advertisers or data brokers.</p>
+
+  <h2 id="transfers">9. International transfers</h2>
+  <p>
+    Our primary hosting is in the United Kingdom or the European Economic Area. Some providers listed in section 7
+    operate outside the UK. Where personal data is transferred outside the UK, we rely on one of the following
+    safeguards:
+  </p>
+  <ul>
+    <li>UK adequacy regulations for the destination country</li>
+    <li>The International Data Transfer Agreement, or the UK Addendum to the EU Standard Contractual Clauses</li>
+    <li>The UK Extension to the EU–US Data Privacy Framework, where the recipient is certified</li>
+  </ul>
+  <p>You may request a copy of the relevant safeguard by contacting us.</p>
+
+  <h2 id="retention">10. Retention</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Retention period</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Account and workshop content</td><td>For the life of your subscription, then 90 days after termination, after which it is permanently deleted</td></tr>
+        <tr><td>Invoices and financial records</td><td>6 years from the end of the relevant financial year, to meet HMRC requirements</td></tr>
+        <tr><td>Inspection photographs and video</td><td>Configurable per workspace. Default 12 months, then deleted</td></tr>
+        <tr><td>OAuth tokens for connected accounts</td><td>Until you disconnect, then deleted within 30 days</td></tr>
+        <tr><td>Security and access logs</td><td>12 months</td></tr>
+        <tr><td>Support correspondence</td><td>24 months from the last contact</td></tr>
+        <tr><td>Backups</td><td>Rolling 35 days, after which deleted data is unrecoverable</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>You may request earlier deletion at any time. Where we are required by law to keep certain records, we will tell you which data we must retain and why.</p>
+
+  <h2 id="security">11. Security</h2>
+  <ul>
+    <li>All traffic is encrypted in transit using TLS 1.2 or above</li>
+    <li>Data is encrypted at rest, including OAuth tokens and uploaded media</li>
+    <li>Passwords are stored using a one-way hashing algorithm and are never recoverable in plain text</li>
+    <li>Each workspace is logically isolated so no customer can access another customer's data</li>
+    <li>Access to production systems is restricted, logged and reviewed</li>
+    <li>Two-factor authentication is available on all accounts and we recommend enabling it</li>
+    <li>Backups are encrypted and restoration is tested periodically</li>
+  </ul>
+  <p>
+    No system can be guaranteed completely secure. If a personal data breach occurs that is likely to result in a
+    risk to individuals, we will notify the Information Commissioner's Office within 72 hours and inform affected
+    parties where the law requires it.
+  </p>
+
+  <h2 id="rights">12. Your rights</h2>
+  <p>Under the UK GDPR you have the right to:</p>
+  <ul>
+    <li><strong>Be informed</strong> about how your data is used — this policy</li>
+    <li><strong>Access</strong> a copy of the personal data we hold about you</li>
+    <li><strong>Rectify</strong> data that is inaccurate or incomplete</li>
+    <li><strong>Erase</strong> your data, where we have no overriding obligation to keep it</li>
+    <li><strong>Restrict processing</strong> in certain circumstances</li>
+    <li><strong>Data portability</strong> — receive your data in a structured, machine-readable format</li>
+    <li><strong>Object</strong> to processing based on legitimate interests, and to direct marketing at any time</li>
+    <li><strong>Withdraw consent</strong> where processing relies on it</li>
+  </ul>
+  <p>
+    To exercise any of these, email <a href={`mailto:${LEGAL.privacyEmail}`}>{LEGAL.privacyEmail}</a>. We will
+    respond within one month. There is no charge unless a request is manifestly unfounded or excessive.
+  </p>
+  <div class="callout callout-blue">
+    <p>
+      <strong>If you are a customer of a garage that uses GarageCloud</strong> and want to access or delete records
+      the garage holds about you, please contact the garage directly. They control that data; we process it on
+      their behalf and will support them in responding to you.
+    </p>
+  </div>
+  <p>
+    You also have the right to complain to the Information Commissioner's Office at
+    <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or on 0303 123 1113. We would
+    appreciate the chance to address your concerns first.
+  </p>
+
+  <h2 id="cookies">13. Cookies</h2>
+  <p>We use a small number of cookies:</p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Purpose</th>
+          <th>Consent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Strictly necessary</strong></td><td>Keeping you signed in, maintaining your session, security and load balancing</td><td>Not required</td></tr>
+        <tr><td><strong>Preference</strong></td><td>Remembering settings such as light or dark mode</td><td>Not required</td></tr>
+        <tr><td><strong>Analytics</strong></td><td>Understanding which pages are used, so we can improve the product</td><td>Required</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>You can manage your choices at any time through the cookie banner or in your browser settings. Blocking strictly necessary cookies will prevent the application from working.</p>
+
+  <h2 id="children">14. Children</h2>
+  <p>
+    GarageCloud is a business tool and is not directed at children. We do not knowingly collect personal data from
+    anyone under 16. If you believe a child has provided us with personal data, contact us and we will delete it.
+  </p>
+
+  <h2 id="changes">15. Changes to this policy</h2>
+  <p>
+    We may update this policy from time to time. The version number and date at the top will change. If the changes
+    are material — for example a new category of data, a new purpose, or a change to how connected account data is
+    handled — we will notify account holders by email at least 30 days before the change takes effect.
+  </p>
+  <p>Previous versions are available on request.</p>
+
+  <h2 id="contact">16. Contact</h2>
+  <div class="callout">
+    <p><strong>Data protection enquiries</strong></p>
+    <p>Email: <a href={`mailto:${LEGAL.privacyEmail}`}>{LEGAL.privacyEmail}</a></p>
+    <p style="margin-top:14px"><strong>Post</strong></p>
+    <p><span class="placeholder">{LEGAL.entityName}</span>, <span class="placeholder">{LEGAL.registeredAddress}</span></p>
+    <p style="margin-top:14px"><strong>General support</strong></p>
+    <p>Email: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
+  </div>
+</ArticleLayout>

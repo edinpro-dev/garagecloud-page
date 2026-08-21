@@ -1,0 +1,267 @@
+---
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import { SITE, LEGAL } from "../data/site";
+---
+
+<ArticleLayout
+  title="Terms of Service — GarageCloud"
+  description="The terms governing use of the GarageCloud workshop management platform."
+  eyebrow="Legal"
+  breadcrumbLabel="Terms"
+  heading="Terms of Service"
+  lede={`Last updated ${LEGAL.lastUpdated} · Version ${LEGAL.version}. By creating an account or using the service you agree to these terms. If you are agreeing on behalf of a business, you confirm you have authority to bind that business.`}
+>
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#parties">Parties and definitions</a></li>
+      <li><a href="#service">The service</a></li>
+      <li><a href="#accounts">Accounts and access</a></li>
+      <li><a href="#sub">Subscriptions and modules</a></li>
+      <li><a href="#fees">Fees and payment</a></li>
+      <li><a href="#trial">Free trial</a></li>
+      <li><a href="#use">Acceptable use</a></li>
+      <li><a href="#yourdata">Your data</a></li>
+      <li><a href="#dp">Data protection</a></li>
+      <li><a href="#integrations">Connected services</a></li>
+      <li><a href="#ip">Intellectual property</a></li>
+      <li><a href="#availability">Availability and support</a></li>
+      <li><a href="#warranty">Warranties and disclaimers</a></li>
+      <li><a href="#liability">Limitation of liability</a></li>
+      <li><a href="#indemnity">Indemnity</a></li>
+      <li><a href="#term">Term and termination</a></li>
+      <li><a href="#changes">Changes to these terms</a></li>
+      <li><a href="#general">General</a></li>
+      <li><a href="#law">Governing law</a></li>
+      <li><a href="#contactus">Contact</a></li>
+    </ol>
+  </div>
+
+  <h2 id="parties">1. Parties and definitions</h2>
+  <p>
+    These terms are between <strong><span class="placeholder">{LEGAL.entityName}</span></strong>, a company
+    registered in <span class="placeholder">{LEGAL.jurisdiction}</span> under number
+    <span class="placeholder">{LEGAL.companyNumber}</span> with its registered office at
+    <span class="placeholder">{LEGAL.registeredAddress}</span> ("GarageCloud", "we", "us"), and the business or
+    individual subscribing to the service ("you", "the Customer").
+  </p>
+  <ul>
+    <li><strong>Service</strong> — the GarageCloud web application, websites, APIs and any associated documentation.</li>
+    <li><strong>Workspace</strong> — your isolated instance of the Service, accessed at your own subdomain.</li>
+    <li><strong>Authorised User</strong> — a person you permit to access your Workspace.</li>
+    <li><strong>Customer Data</strong> — all content you or your Authorised Users enter into or generate within the Service.</li>
+    <li><strong>Module</strong> — an optional set of features enabled in addition to the core Service.</li>
+  </ul>
+
+  <h2 id="service">2. The service</h2>
+  <p>
+    GarageCloud provides cloud-based workshop management software including job cards, vehicle inspections,
+    scheduling, estimates, invoicing, stock control, reporting and customer communications.
+  </p>
+  <p>
+    We grant you a non-exclusive, non-transferable, revocable right to access and use the Service during your
+    subscription, for your own internal business purposes, subject to these terms.
+  </p>
+  <p>
+    We may improve, modify or discontinue individual features. Where a change materially reduces core functionality
+    you rely on, we will give at least 30 days' notice.
+  </p>
+
+  <h2 id="accounts">3. Accounts and access</h2>
+  <ul>
+    <li>You must provide accurate registration information and keep it current.</li>
+    <li>You are responsible for all activity under your account, including that of your Authorised Users.</li>
+    <li>Credentials must not be shared. Each Authorised User must have their own login.</li>
+    <li>You must notify us promptly at <a href={`mailto:${LEGAL.securityEmail}`}>{LEGAL.securityEmail}</a> if you suspect unauthorised access.</li>
+    <li>We strongly recommend enabling two-factor authentication on all accounts.</li>
+    <li>You are responsible for removing access for staff who leave your business.</li>
+  </ul>
+
+  <h2 id="sub">4. Subscriptions and modules</h2>
+  <p>The Service is sold as a core subscription with optional Modules. Your plan and active Modules are shown in <strong>Settings → Modules</strong>.</p>
+  <ul>
+    <li>Modules may be enabled or disabled at any time.</li>
+    <li>Enabling a Module takes effect immediately and is charged pro rata for the remainder of the current billing period.</li>
+    <li>Disabling a Module takes effect at the end of the current billing period. No refund is due for the remainder of that period.</li>
+    <li>Disabling a Module hides its features but retains the associated data, which becomes accessible again if the Module is re-enabled.</li>
+  </ul>
+
+  <h2 id="fees">5. Fees and payment</h2>
+  <ul>
+    <li>Fees are as set out on our <a href="/pricing">pricing page</a> or in your order, and are exclusive of VAT unless stated otherwise.</li>
+    <li>Subscriptions are billed monthly or annually in advance, and renew automatically until cancelled.</li>
+    <li>Payment is taken by the payment method on file on each renewal date.</li>
+    <li>If payment fails, we will attempt to take payment again and notify you. If payment remains outstanding after 14 days, we may suspend access.</li>
+    <li>Except where these terms or the law require otherwise, fees are non-refundable.</li>
+    <li>We may change our prices on at least 30 days' notice. Changes take effect at your next renewal. If you do not accept a price change you may cancel before it takes effect.</li>
+    <li>Charges you incur directly with third-party providers you connect are entirely between you and that provider.</li>
+  </ul>
+
+  <h2 id="trial">6. Free trial</h2>
+  <p>
+    Where a free trial is offered, it runs for the period stated at sign-up. At the end of the trial your
+    subscription begins and the first payment is taken unless you cancel beforehand. We will email you before the
+    trial ends. Trials are provided as-is and may exclude certain Modules.
+  </p>
+
+  <h2 id="use">7. Acceptable use</h2>
+  <p>You must not, and must not permit anyone else to:</p>
+  <ul>
+    <li>Use the Service unlawfully or in breach of any regulation applicable to your business</li>
+    <li>Upload malicious code, or attempt to gain unauthorised access to the Service or another customer's Workspace</li>
+    <li>Reverse engineer, decompile or attempt to derive the source code of the Service</li>
+    <li>Resell, sublicense or provide the Service to a third party as a bureau service, unless separately agreed in writing</li>
+    <li>Scrape, harvest or extract data by automated means other than through interfaces we provide</li>
+    <li>Send unlawful, deceptive or unsolicited communications through the Service</li>
+    <li>Upload content that infringes another party's rights, or that is defamatory or obscene</li>
+    <li>Place unreasonable load on the Service, or interfere with its operation or security</li>
+  </ul>
+  <p>We may suspend access without notice where we reasonably believe there is a serious breach of this section, a security risk, or a legal requirement to do so. We will tell you why as soon as we are able.</p>
+
+  <h2 id="yourdata">8. Your data</h2>
+  <ul>
+    <li><strong>You own your Customer Data.</strong> We claim no ownership over it.</li>
+    <li>You grant us a limited licence to host, process, transmit and display Customer Data solely to provide the Service and to comply with the law.</li>
+    <li>You are responsible for the accuracy and legality of Customer Data, and for having the necessary rights and consents to enter it.</li>
+    <li>You may export your data at any time in the formats we provide.</li>
+    <li>On termination, you have 90 days to export. After that we permanently delete Customer Data, subject to records we are required to retain and to backup cycles described in our <a href="/privacy">Privacy Policy</a>.</li>
+    <li>We do not use Customer Data to train machine learning or artificial intelligence models.</li>
+    <li>We may use aggregated, anonymised statistics that cannot identify you or any individual to improve and describe the Service.</li>
+  </ul>
+
+  <h2 id="dp">9. Data protection</h2>
+  <p>
+    Where you use the Service to process personal data about your own customers, employees or contacts, you are the
+    data controller and we are the data processor. Our processing terms form part of this agreement and are set out
+    in our <a href="/privacy">Privacy Policy</a>.
+  </p>
+  <p>
+    We will process such personal data only on your documented instructions, keep it confidential, apply
+    appropriate technical and organisational security measures, assist you with data subject requests, and notify
+    you without undue delay if we become aware of a personal data breach affecting it.
+  </p>
+  <p>Customers requiring a signed Data Processing Agreement should contact <a href={`mailto:${LEGAL.privacyEmail}`}>{LEGAL.privacyEmail}</a>.</p>
+
+  <h2 id="integrations">10. Connected services</h2>
+  <p>The Service can connect to third-party providers including payment processors, accounting packages, email and SMS providers, and vehicle data services.</p>
+  <ul>
+    <li>You connect these using your own accounts and remain bound by each provider's own terms.</li>
+    <li>We are not responsible for the availability, accuracy or performance of third-party services, nor for any charges they levy.</li>
+    <li>A provider may change or withdraw its interface at any time, which may affect the corresponding feature.</li>
+    <li>You may disconnect any service at any time from Settings → Integrations.</li>
+    <li>Vehicle and MOT information is supplied by DVSA and DVLA. We pass it through without alteration and do not warrant its accuracy.</li>
+  </ul>
+  <div class="callout callout-blue">
+    <p>
+      Where the Service sends messages on your behalf from your own email address or telephone number,
+      <strong>you remain the sender</strong> for the purposes of electronic marketing law. You are responsible for
+      holding the necessary consent to contact recipients.
+    </p>
+  </div>
+
+  <h2 id="ip">11. Intellectual property</h2>
+  <p>
+    All rights in the Service, including its software, design, documentation, trade marks and branding, remain with
+    GarageCloud and its licensors. Nothing in these terms transfers any of those rights to you.
+  </p>
+  <p>If you send us feedback or suggestions, we may use them without obligation or payment to you.</p>
+
+  <h2 id="availability">12. Availability and support</h2>
+  <ul>
+    <li>We aim for <strong>99.5% monthly availability</strong>, excluding scheduled maintenance and events outside our reasonable control.</li>
+    <li>Scheduled maintenance is normally carried out outside UK business hours. We give at least 48 hours' notice where a service interruption is expected.</li>
+    <li>Support is provided by email during UK business hours. Response targets depend on your plan.</li>
+    <li>Emergency maintenance may be carried out at any time where necessary to preserve security or integrity.</li>
+  </ul>
+
+  <h2 id="warranty">13. Warranties and disclaimers</h2>
+  <p>We warrant that we will provide the Service with reasonable skill and care, and in accordance with these terms.</p>
+  <p>
+    Except as expressly stated, and to the fullest extent permitted by law, the Service is provided <strong>as
+    is</strong>. We do not warrant that it will be uninterrupted, error-free, or that it will meet every requirement
+    of your business.
+  </p>
+  <div class="callout callout-amber">
+    <p>
+      <strong>The Service is a record-keeping and management tool.</strong> It does not provide legal, accounting,
+      tax or technical advice. You remain responsible for the safety and roadworthiness of vehicles you work on, for
+      compliance with DVSA and MOT requirements, for the accuracy of your VAT returns and statutory filings, and for
+      all professional judgements made by your staff.
+    </p>
+  </div>
+
+  <h2 id="liability">14. Limitation of liability</h2>
+  <p>
+    Nothing in these terms limits or excludes liability for death or personal injury caused by negligence, fraud or
+    fraudulent misrepresentation, or any other liability that cannot lawfully be limited.
+  </p>
+  <p>Subject to that:</p>
+  <ul>
+    <li>Neither party is liable for indirect or consequential loss, loss of profit, loss of business, loss of anticipated savings, or loss of goodwill.</li>
+    <li>Our total aggregate liability arising out of or in connection with this agreement in any 12-month period is limited to the total fees you paid us in the 12 months preceding the event giving rise to the claim.</li>
+    <li>We are not liable for loss or corruption of Customer Data to the extent it results from your acts or omissions, or from a third-party service you have connected.</li>
+  </ul>
+  <p>You are responsible for maintaining your own exports of business-critical data.</p>
+
+  <h2 id="indemnity">15. Indemnity</h2>
+  <p>You will indemnify us against claims, losses and reasonable costs arising from your Customer Data, your use of the Service in breach of these terms, or your breach of any law or third-party right.</p>
+
+  <h2 id="term">16. Term and termination</h2>
+  <h3>16.1 By you</h3>
+  <p>
+    You may cancel at any time from Settings → Subscription, or by emailing
+    <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>. Cancellation takes effect at the end of your
+    current billing period. You retain access until then.
+  </p>
+  <h3>16.2 By us</h3>
+  <p>We may terminate or suspend this agreement:</p>
+  <ul>
+    <li>Immediately, if you materially breach these terms and fail to remedy it within 14 days of written notice</li>
+    <li>Immediately, if you become insolvent or enter an insolvency procedure</li>
+    <li>On 60 days' notice, if we withdraw the Service entirely, with a pro rata refund of prepaid fees</li>
+  </ul>
+  <h3>16.3 On termination</h3>
+  <ul>
+    <li>Access ends on the effective date</li>
+    <li>You have 90 days to export Customer Data</li>
+    <li>Outstanding fees remain payable</li>
+    <li>Sections 8, 11, 13, 14, 15 and 19 survive termination</li>
+  </ul>
+
+  <h2 id="changes">17. Changes to these terms</h2>
+  <p>
+    We may amend these terms. For material changes we will give at least 30 days' notice by email and by notice
+    within the Service. Continued use after the effective date constitutes acceptance. If you do not accept a
+    material change, you may cancel before it takes effect and receive a pro rata refund of prepaid fees for the
+    unused period.
+  </p>
+
+  <h2 id="general">18. General</h2>
+  <ul>
+    <li><strong>Entire agreement</strong> — these terms, together with the Privacy Policy and any order form, form the whole agreement between us.</li>
+    <li><strong>Assignment</strong> — you may not assign this agreement without our written consent. We may assign it to a successor in a merger, acquisition or sale of assets.</li>
+    <li><strong>Severance</strong> — if any provision is found unenforceable, the rest remains in force.</li>
+    <li><strong>Waiver</strong> — failure to enforce a provision is not a waiver of it.</li>
+    <li><strong>Force majeure</strong> — neither party is liable for failure to perform caused by events outside its reasonable control.</li>
+    <li><strong>Third parties</strong> — no one other than the parties has rights under this agreement.</li>
+    <li><strong>Notices</strong> — notices to us go to <a href={`mailto:${LEGAL.legalEmail}`}>{LEGAL.legalEmail}</a>; notices to you go to your registered account email.</li>
+  </ul>
+
+  <h2 id="law">19. Governing law</h2>
+  <p>
+    This agreement is governed by the law of <span class="placeholder">{LEGAL.jurisdiction}</span>. The courts of
+    <span class="placeholder">{LEGAL.jurisdiction}</span> have exclusive jurisdiction, save that either party may
+    seek injunctive relief in any competent court.
+  </p>
+
+  <h2 id="contactus">20. Contact</h2>
+  <div class="callout">
+    <p><strong><span class="placeholder">{LEGAL.entityName}</span></strong></p>
+    <p><span class="placeholder">{LEGAL.registeredAddress}</span></p>
+    <p>Company number: <span class="placeholder">{LEGAL.companyNumber}</span></p>
+    <p>VAT number: <span class="placeholder">{LEGAL.vatNumber}</span></p>
+    <p style="margin-top:14px">General: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
+    <p>Legal: <a href={`mailto:${LEGAL.legalEmail}`}>{LEGAL.legalEmail}</a></p>
+    <p>Privacy: <a href={`mailto:${LEGAL.privacyEmail}`}>{LEGAL.privacyEmail}</a></p>
+  </div>
+</ArticleLayout>
