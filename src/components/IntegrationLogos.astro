@@ -1,0 +1,18 @@
+---
+// Grayscale marks for the systems GarageCloud connects to at launch.
+import { INTEGRATIONS } from "../data/site";
+import IntegrationMark from "./IntegrationMark.astro";
+---
+
+<div class="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-10">
+  <p class="text-sm font-medium text-muted-text">Works with the tools you already use, from launch</p>
+  <ul class="flex items-center gap-8 text-muted-text">
+    {
+      INTEGRATIONS.map((integration) => (
+        <li>
+          <IntegrationMark name={integration.name} />
+        </li>
+      ))
+    }
+  </ul>
+</div>

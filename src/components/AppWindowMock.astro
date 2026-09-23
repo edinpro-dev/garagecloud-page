@@ -1,0 +1,134 @@
+---
+import {
+  Calculator,
+  Car,
+  CircleDot,
+  ClipboardCheck,
+  LayoutGrid,
+  ReceiptText,
+  Settings,
+} from "@lucide/astro";
+
+// A scaled, non-interactive replica of the app shell, so the hero shows the
+// work rather than illustrating it.
+
+const nav = [
+  { label: "Workshop board", icon: LayoutGrid, active: true },
+  { label: "Inspections", icon: ClipboardCheck, active: false },
+  { label: "Invoicing", icon: ReceiptText, active: false },
+  { label: "Courtesy cars", icon: Car, active: false },
+  { label: "Mobile tyres", icon: CircleDot, active: false },
+  { label: "Settings", icon: Settings, active: false },
+];
+
+const kpis = [
+  { label: "Jobs on the board", value: "18", icon: LayoutGrid },
+  { label: "Awaiting approval", value: "3", icon: ClipboardCheck },
+  { label: "To sync to Xero", value: "£2,410", icon: Calculator },
+];
+
+// jedox-services' status tones: pale opaque ground, darker text, no border.
+const tones = {
+  progress: "bg-status-progress text-status-progress-foreground",
+  waiting: "bg-status-waiting text-status-waiting-foreground",
+  draft: "bg-status-draft text-status-draft-foreground",
+  overdue: "bg-status-overdue text-status-overdue-foreground",
+};
+
+const jobs = [
+  { reg: "LV21 KRA", customer: "R. Okafor", service: "Full service", status: "In progress", tone: tones.progress },
+  { reg: "BD19 XTC", customer: "L. Bianchi", service: "MOT and retest", status: "Awaiting approval", tone: tones.waiting },
+  { reg: "YF68 PLM", customer: "M. Ahmed", service: "Mobile tyres", status: "Booked in", tone: tones.draft },
+  { reg: "SG20 HNP", customer: "T. Wilson", service: "ECU remap", status: "Overdue", tone: tones.overdue },
+];
+---
+
+<div aria-hidden="true" class="overflow-hidden rounded-lg border border-border-strong bg-canvas-white">
+  <div class="flex items-center gap-2 border-b border-border-grey bg-section-grey px-4 py-3">
+    <div class="flex gap-1.5">
+      <span class="size-2.5 rounded-full bg-border-grey"></span>
+      <span class="size-2.5 rounded-full bg-border-grey"></span>
+      <span class="size-2.5 rounded-full bg-border-grey"></span>
+    </div>
+    <div class="mx-auto rounded-sm bg-canvas-white px-3 py-1 font-mono text-[10px] text-muted-text">
+      app.garagecloud.co/board
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="hidden w-44 shrink-0 flex-col border-r border-border-grey bg-canvas-white p-3 sm:flex">
+      <span class="px-1 pb-3 font-heading text-sm font-bold text-workshop-black">
+        Garage<span class="text-navy">Cloud</span>
+      </span>
+      <div class="flex flex-col gap-0.5">
+        {
+          nav.map((item) => (
+            <div
+              class:list={[
+                "flex items-center gap-2 rounded-sm border-l-2 px-2 py-1.5 text-[11px] whitespace-nowrap",
+                item.active
+                  ? "border-navy bg-ground font-semibold text-workshop-black"
+                  : "border-transparent font-medium text-muted-text",
+              ]}
+            >
+              <item.icon class:list={["size-3.5 shrink-0", item.active ? "text-navy" : "text-muted-text"]} />
+              {item.label}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="min-w-0 flex-1 bg-canvas-white p-4">
+      <div class="mb-3 flex items-end justify-between">
+        <div>
+          <p class="font-heading text-sm font-semibold text-workshop-black">Workshop board</p>
+          <p class="text-[10px] text-muted-text">Tuesday. Every bay, every job.</p>
+        </div>
+        <span class="status-chip bg-status-complete text-xs text-status-complete-foreground">
+          <span class="size-1.5 rounded-full bg-status-complete-foreground"></span>
+          Live
+        </span>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2">
+        {
+          kpis.map((kpi) => (
+            <div class="rounded-md border border-border-strong bg-canvas-white p-3">
+              <kpi.icon class="size-3.5 text-muted-text" />
+              <p class="tabular mt-2 font-num text-xl leading-none font-bold text-workshop-black">
+                {kpi.value}
+              </p>
+              <p class="mt-1 text-[10px] text-muted-text">{kpi.label}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-3 rounded-md border border-border-strong bg-canvas-white p-3">
+        <div class="mb-2 flex items-center justify-between">
+          <p class="text-[11px] font-semibold text-workshop-black">Today's jobs</p>
+          <p class="tabular font-num text-xs font-semibold text-muted-text">4 active</p>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          {
+            jobs.map((job) => (
+              <div class="flex items-center gap-2.5 rounded-sm border border-border-grey px-2.5 py-1.5">
+                <span class="tabular shrink-0 rounded-sm border border-plate-ink/15 bg-plate px-1.5 py-0.5 font-mono text-[9px] font-semibold text-plate-ink">
+                  {job.reg}
+                </span>
+                <div class="min-w-0 flex-1">
+                  <p class="truncate text-[11px] font-medium text-workshop-black">{job.customer}</p>
+                  <p class="truncate text-[10px] text-muted-text">{job.service}</p>
+                </div>
+                <span class={`status-chip text-[9px] ${job.tone}`}>
+                  {job.status}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

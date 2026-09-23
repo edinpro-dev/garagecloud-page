@@ -1,0 +1,112 @@
+---
+import { ArrowRight, Check, LoaderCircle } from "@lucide/astro";
+import { WORKSPACE_SETUP_CHECKLIST } from "../data/site";
+---
+
+<section class="border-b border-border-grey bg-section-grey">
+  <div class="mx-auto grid max-w-page items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:px-20">
+    <div>
+      <p class="brand-label text-body-text">Guided setup</p>
+      <h2 class="mt-3 font-heading text-h1 font-bold text-balance">We set your workspace up for you.</h2>
+      <p class="mt-4 max-w-[60ch] text-lg leading-relaxed text-body-text">
+        You don't start on an empty screen. Before you go live we configure the workshop board, invoicing and the
+        customer portal around the way the business already runs.
+      </p>
+      <p class="mt-4 max-w-[60ch] text-body-text">
+        Bays and staff, VAT and invoice numbering, your Xero or Sage connection, MOT and service reminders. All set up
+        and switched on, so the first job you put through it works like the rest will.
+      </p>
+      <div class="mt-8">
+        <a href="/#waiting-list" class="btn btn-primary">
+          Join the waiting list
+          <ArrowRight class="size-4" />
+        </a>
+      </div>
+    </div>
+
+    <!--
+      A self-running console that walks through what setup configures. It starts
+      when scrolled into view, showing a spinner then a tick per task. With reduced
+      motion or no JavaScript it renders complete.
+    -->
+    <div data-setup-console class="overflow-hidden rounded-lg bg-dark-surface" aria-hidden="true">
+      <div class="flex items-center gap-2 border-b border-dark-rule px-4 py-3">
+        <div class="flex gap-1.5">
+          <span class="size-2.5 rounded-full bg-white/20"></span>
+          <span class="size-2.5 rounded-full bg-white/20"></span>
+          <span class="size-2.5 rounded-full bg-white/20"></span>
+        </div>
+        <span class="mx-auto font-mono text-[11px] text-white/50">garagecloud / workspace setup</span>
+      </div>
+
+      <div class="space-y-3 p-6 font-mono text-[13px]">
+        <p class="text-white/60">
+          <span class="text-steel-blue">$</span> setup --workshop "Riverside Motors" --plan business
+        </p>
+
+        {
+          WORKSPACE_SETUP_CHECKLIST.map((item) => (
+            <div data-step data-state="done" class="group flex items-center gap-3 transition-opacity duration-300 data-[state=pending]:opacity-25">
+              <span class="hidden size-4 shrink-0 items-center justify-center rounded-full bg-white/15 text-white group-data-[state=done]:flex">
+                <Check class="size-3" stroke-width={3} />
+              </span>
+              <LoaderCircle class="hidden size-4 shrink-0 animate-spin text-steel-blue group-data-[state=active]:block" />
+              <span class="hidden size-4 shrink-0 rounded-full border border-dark-rule group-data-[state=pending]:block"></span>
+              <span class="text-white/45 group-data-[state=done]:text-white/85">{item}</span>
+            </div>
+          ))
+        }
+
+        <div class="mt-3 border-t border-dark-rule pt-4">
+          <p data-complete class="flex items-center gap-2 text-white">
+            <Check class="size-4 shrink-0" stroke-width={3} />
+            Workspace ready. Go live whenever you are.
+          </p>
+          <p data-working class="hidden items-center gap-2 text-white/60">
+            <LoaderCircle class="size-3.5 shrink-0 animate-spin" />
+            Setting up your workspace…
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const STEP_MS = 520;
+
+  for (const panel of document.querySelectorAll<HTMLElement>("[data-setup-console]")) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) continue;
+
+    const steps = [...panel.querySelectorAll<HTMLElement>("[data-step]")];
+    const complete = panel.querySelector<HTMLElement>("[data-complete]")!;
+    const working = panel.querySelector<HTMLElement>("[data-working]")!;
+
+    const render = (done: number) => {
+      steps.forEach((step, i) => {
+        step.dataset.state = i < done ? "done" : i === done ? "active" : "pending";
+      });
+      const finished = done >= steps.length;
+      complete.classList.toggle("hidden", !finished);
+      complete.classList.toggle("flex", finished);
+      working.classList.toggle("hidden", finished);
+      working.classList.toggle("flex", !finished);
+    };
+
+    render(0);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        let done = 0;
+        const timer = setInterval(() => {
+          render(++done);
+          if (done >= steps.length) clearInterval(timer);
+        }, STEP_MS);
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(panel);
+  }
+</script>

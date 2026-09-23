@@ -1,40 +1,91 @@
 ---
+import { MessageCircle } from "@lucide/astro";
 import { FEATURES } from "../data/site";
 
-const tints = [
-  "bg-coral-orange/10",
-  "bg-deep-magenta/10",
-  "bg-deep-purple/10",
-  "bg-amber-orange/15",
+// Ordered so column spans sum to 6 on each row, for a bento with no gaps.
+// Rows: 4+2 · 2+2+2 · 3+3 · 2+2+2 · 3+3 = all 12 modules.
+const f = FEATURES;
+const tiles = [
+  { ...f[0], span: "lg:col-span-4", variant: "featured" }, // Workshop board
+  { ...f[1], span: "lg:col-span-2", variant: "default" }, // VRM lookup
+  { ...f[2], span: "lg:col-span-2", variant: "default" }, // Inspections
+  { ...f[4], span: "lg:col-span-2", variant: "default" }, // Reminders
+  { ...f[10], span: "lg:col-span-2", variant: "default" }, // Invoicing
+  { ...f[3], span: "lg:col-span-3", variant: "accent" }, // WhatsApp approvals
+  { ...f[11], span: "lg:col-span-3", variant: "default" }, // Xero and Sage
+  { ...f[5], span: "lg:col-span-2", variant: "default" }, // Courtesy cars
+  { ...f[6], span: "lg:col-span-2", variant: "default" }, // Mobile tyres
+  { ...f[7], span: "lg:col-span-2", variant: "default" }, // ECU remapping
+  { ...f[8], span: "lg:col-span-3", variant: "default" }, // Auto locksmith
+  { ...f[9], span: "lg:col-span-3", variant: "default" }, // Ghost immobiliser
 ];
+
+// Bay occupancy for the featured tile. Monochrome: fill is a quantity, not a state.
+const bays = ["Bay 1", "Bay 2", "Bay 3", "Bay 4", "MOT", "Mobile"];
+const filled = [3, 1, 4, 2, 5, 2];
 ---
 
-<section id="features" class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
-  <div class="reveal mx-auto max-w-2xl text-center">
-    <span class="text-coral-orange font-heading text-xs font-bold uppercase tracking-widest">What's included</span>
-    <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">What's included in GarageCloud</h2>
-    <p class="mt-4 text-lg text-body-text">
-      Built for garages and every trade around them, from tyres to locksmiths.
-    </p>
-  </div>
+<section id="features" class="border-b border-border-grey bg-section-grey">
+  <div class="mx-auto max-w-page px-6 py-20 lg:px-20">
+    <div class="max-w-[60ch]">
+      <p class="brand-label text-body-text">What's included</p>
+      <h2 class="mt-3 font-heading text-h1 font-bold text-balance">What's included in GarageCloud</h2>
+      <p class="mt-4 text-body-text">
+        Built for garages and every trade around them, from tyres to locksmiths. {FEATURES.length} modules sharing the
+        same data, instead of a diary, a spreadsheet and a group chat.
+      </p>
+    </div>
 
-  <div class="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-    {
-      FEATURES.map((feature, index) => (
-        <div
-          class="reveal group rounded-2xl border border-border-grey bg-canvas-white p-6 transition-all duration-200 hover:-translate-y-1 hover:border-coral-orange/30 hover:shadow-lg hover:shadow-workshop-black/5"
-          style={`transition-delay: ${(index % 3) * 80}ms`}
-        >
-          <div
-            class={`flex h-12 w-12 items-center justify-center rounded-full text-2xl transition-transform duration-200 group-hover:scale-110 ${tints[index % tints.length]}`}
-            aria-hidden="true"
-          >
-            {feature.icon}
-          </div>
-          <h3 class="mt-4 text-base font-bold text-workshop-black">{feature.title}</h3>
-          <p class="mt-1.5 text-sm leading-relaxed text-muted-text">{feature.description}</p>
-        </div>
-      ))
-    }
+    <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-6">
+      {
+        tiles.map((tile) => {
+          const isAccent = tile.variant === "accent";
+          return (
+            <div
+              class:list={[
+                "flex flex-col rounded-lg border p-5 transition-colors",
+                tile.span,
+                isAccent ? "border-navy/30 bg-navy/5" : "border-border-strong bg-canvas-white",
+              ]}
+            >
+              <div class="flex items-center gap-3">
+                <div class:list={["icon-chip size-8", isAccent && "bg-navy text-white"]}>
+                  <tile.icon class="size-4" stroke-width={1.75} />
+                </div>
+                <h3 class="font-heading text-[15px] font-semibold">{tile.title}</h3>
+              </div>
+              <p class="mt-2.5 text-sm text-body-text">{tile.description}</p>
+
+              {tile.variant === "featured" && (
+                <div class="mt-4 grid grid-cols-6 gap-1.5" aria-hidden="true">
+                  {bays.map((bay, i) => (
+                    <div class="rounded-sm border border-border-grey bg-canvas-white px-1.5 py-1">
+                      <p class="text-center text-[10px] font-medium text-muted-text">{bay}</p>
+                      <div class="mt-1 flex flex-col gap-0.5">
+                        {Array.from({ length: filled[i] }).map((_, s) => (
+                          <span class:list={["h-1 rounded-full", s % 2 === 0 ? "bg-workshop-black/70" : "bg-workshop-black/25"]} />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {isAccent && (
+                <div class="mt-3 flex items-center gap-2 rounded-md border border-navy/20 bg-canvas-white px-3 py-2" aria-hidden="true">
+                  <span class="flex size-6 shrink-0 items-center justify-center rounded-sm bg-ground text-workshop-black">
+                    <MessageCircle class="size-3.5" />
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-xs font-medium text-workshop-black">Front discs and pads. £340 plus VAT.</p>
+                    <p class="text-xs text-muted-text">Approved by the customer, 2 minutes ago</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })
+      }
+    </div>
   </div>
 </section>

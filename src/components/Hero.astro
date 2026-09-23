@@ -1,99 +1,79 @@
 ---
-import { HERO } from "../data/site";
+import { ArrowRight, CircleCheck } from "@lucide/astro";
+import AppWindowMock from "./AppWindowMock.astro";
+import IntegrationLogos from "./IntegrationLogos.astro";
+import { HERO, STATS } from "../data/site";
 
-const jobs = [
-  { plate: "LV21 KRA", job: "Full service", eta: "Bay 2", accent: "bg-coral-orange" },
-  { plate: "MK70 GXP", job: "Brake inspection", eta: "Bay 4", accent: "bg-deep-magenta" },
-  { plate: "BD19 TSN", job: "MOT retest", eta: "Bay 1", accent: "bg-deep-purple" },
-  { plate: "RV22 FLW", job: "Tyre change", eta: "Mobile", accent: "bg-amber-orange" },
-];
+const [headingLead, headingTail] = HERO.heading.split(HERO.headingEmphasis);
 ---
 
-<section class="relative overflow-hidden">
+<section class="relative isolate flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden border-b border-border-grey">
+  <!-- A neutral grid, no colour wash. -->
   <div
-    class="bg-road-texture pointer-events-none absolute inset-0 opacity-[0.04]"
     aria-hidden="true"
-  >
-  </div>
-  <div
-    class="bg-gradient-primary pointer-events-none absolute -top-32 left-1/2 h-[28rem] w-[64rem] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
-    aria-hidden="true"
-  >
-  </div>
-  <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-coral-orange/40 to-transparent"
-    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 -z-10"
+    style="background-image: linear-gradient(to right, var(--color-border-grey) 1px, transparent 1px), linear-gradient(to bottom, var(--color-border-grey) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(120% 90% at 60% 0%, black 25%, transparent 72%); -webkit-mask-image: radial-gradient(120% 90% at 60% 0%, black 25%, transparent 72%);"
   >
   </div>
 
-  <div class="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 py-20 sm:py-28 lg:grid-cols-2 lg:gap-12">
-    <div class="text-center lg:text-left">
-      <span
-        class="bg-gradient-primary inline-block rounded-full px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-wide text-white"
-      >
-        {HERO.badge}
-      </span>
+  <div class="mx-auto grid w-full max-w-page flex-1 content-center items-center gap-12 px-6 pt-16 pb-16 lg:grid-cols-[1.05fr_1fr] lg:px-20">
+    <div>
+      <span class="badge">{HERO.badge}</span>
 
-      <h1 class="mt-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">
-        {HERO.heading}
+      <h1 class="mt-6 font-heading text-h1 font-bold text-balance lg:text-display">
+        {headingLead}<span class="text-navy">{HERO.headingEmphasis}</span>{headingTail}
       </h1>
 
-      <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-body-text sm:text-xl lg:mx-0">
-        {HERO.subheading}
-      </p>
+      <p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-body-text">{HERO.subheading}</p>
 
-      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-        <a
-          href="#waiting-list"
-          class="bg-gradient-primary w-full rounded-full px-7 py-3.5 font-heading text-base font-bold text-white shadow-lg shadow-coral-orange/20 transition-transform hover:scale-[1.03] sm:w-auto"
-        >
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="#waiting-list" class="btn btn-primary">
           {HERO.primaryCta}
+          <ArrowRight class="size-4" />
         </a>
-        <a
-          href="#features"
-          class="w-full rounded-full border border-border-grey px-7 py-3.5 font-heading text-base font-bold text-workshop-black transition-colors hover:border-workshop-black sm:w-auto"
-        >
-          {HERO.secondaryCta}
-        </a>
+        <a href="#features" class="btn btn-secondary">{HERO.secondaryCta}</a>
       </div>
 
-      <p class="mt-8 text-sm text-muted-text">{HERO.trustLine}</p>
+
+      <p class="mt-6 text-sm text-muted-text">{HERO.trustLine}</p>
     </div>
 
-    <div class="relative mx-auto w-full max-w-md lg:max-w-none" aria-hidden="true">
-      <div
-        class="bg-gradient-primary absolute -inset-4 -z-10 rounded-[2rem] opacity-20 blur-2xl"
-      >
-      </div>
+    <div class="relative lg:pl-4" aria-hidden="true">
+      <AppWindowMock />
 
-      <div class="rounded-2xl border border-border-grey bg-canvas-white shadow-2xl shadow-workshop-black/10">
-        <div class="flex items-center gap-2 rounded-t-2xl border-b border-border-grey bg-section-grey px-4 py-3">
-          <span class="h-2.5 w-2.5 rounded-full bg-coral-orange/60"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-amber-orange/60"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-deep-purple/60"></span>
-          <span class="ml-2 font-heading text-xs font-bold text-muted-text">Live workshop board</span>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 p-4">
-          {
-            jobs.map((job) => (
-              <div class="rounded-xl border border-border-grey bg-section-grey/60 p-3">
-                <div class="flex items-center gap-1.5">
-                  <span class={`h-2 w-2 rounded-full ${job.accent}`} />
-                  <span class="font-heading text-[11px] font-bold tracking-wide text-workshop-black">{job.plate}</span>
-                </div>
-                <p class="mt-2 text-xs text-body-text">{job.job}</p>
-                <p class="mt-1 text-[11px] font-semibold text-muted-text">{job.eta}</p>
-              </div>
-            ))
-          }
-        </div>
-
-        <div class="flex items-center justify-between border-t border-border-grey px-4 py-3">
-          <span class="text-[11px] font-semibold text-muted-text">4 jobs in progress</span>
-          <span class="text-gradient-primary font-heading text-[11px] font-bold">On schedule</span>
+      <div class="absolute -bottom-10 -left-8 hidden w-60 rounded-lg border border-border-strong bg-canvas-white p-4 sm:block">
+        <div class="flex items-center gap-3">
+          <span class="flex size-8 shrink-0 items-center justify-center rounded-md bg-status-complete text-status-complete-foreground">
+            <CircleCheck class="size-4" />
+          </span>
+          <div class="min-w-0">
+            <p class="text-xs font-semibold text-workshop-black">Inspection approved</p>
+            <p class="text-xs text-muted-text">Customer replied on WhatsApp</p>
+          </div>
         </div>
       </div>
+
+      <div class="absolute -top-4 -right-2 hidden items-center gap-2 rounded-md border border-border-strong bg-canvas-white px-3 py-2 text-xs font-medium text-workshop-black md:flex">
+        <span class="size-1.5 shrink-0 rounded-full bg-success"></span>
+        Invoice <span class="tabular font-num font-semibold">INV1042</span> synced to Xero
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-page px-6 pb-12 lg:px-20">
+    <IntegrationLogos />
+  </div>
+
+  <div class="border-t border-border-grey bg-section-grey" aria-label="Product facts">
+    <div class="mx-auto grid max-w-page grid-cols-1 divide-y divide-border-grey px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-20">
+      {
+        STATS.map((stat) => (
+          <div class="flex items-baseline gap-2 py-6 sm:justify-center">
+            <span class="tabular font-num text-[28px] leading-none font-bold text-workshop-black">{stat.value}</span>
+            <span class="text-sm text-body-text">{stat.label}</span>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -1,23 +1,123 @@
 @import "tailwindcss";
 
 @import "@fontsource-variable/inter/wght.css";
-@import "@fontsource/plus-jakarta-sans/latin-700.css";
-@import "@fontsource/plus-jakarta-sans/latin-800.css";
+/*
+ * Rajdhani carries references, money, times and quantities, as in
+ * jedox-services. Static 600 and 700, the only weights it is set in.
+ */
+@import "@fontsource/rajdhani/600.css";
+@import "@fontsource/rajdhani/700.css";
 
+/*
+ * Section layout follows garagecloud-landing. Everything else follows the
+ * jedox-services token sheet: one navy accent on the slate ramp, no gradients,
+ * no drop shadows, one 6px radius, and Inter for everything except figures.
+ *
+ *   Navy     #003366 — the action colour. Primary buttons, the active marker,
+ *                      link underlines, the waiting-list panel.
+ *   Ink      #0F172A — headings and the dark surfaces.
+ *   Body     #475569 — paragraph copy.
+ *   Muted    #64748B — captions and meta, 14px and up.
+ *   Page     #F8FAFC — the alternating section band.
+ *   Ground   #F1F5F9 — icon chips and hover surfaces.
+ *   Strong   #334155 — emphasised values and outline-button text.
+ *   Rule     #E2E8F0 — hairlines and dividers.
+ *   Outline  #CBD5E1 — card, panel and control borders, a step heavier than
+ *                      the rules inside them.
+ *   Slate    #1E293B — the one dark surface, with #334155 rules.
+ *
+ * Steel blue is navy lifted for dark surfaces, where #003366 disappears.
+ */
 @theme inline {
-  --font-sans: "Inter Variable", sans-serif;
-  --font-heading: "Plus Jakarta Sans", sans-serif;
+  /*
+   * Inter for everything, headings included. Two exceptions: `font-num`
+   * (Rajdhani) for references, money, times and quantities, and Tailwind's
+   * own monospace stack for number plates and URLs, so every plate is the
+   * same width.
+   */
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-heading: "Inter Variable", system-ui, sans-serif;
+  --font-num: "Rajdhani", "Inter Variable", system-ui, sans-serif;
 
-  --color-coral-orange: #f04e23;
-  --color-deep-magenta: #c2185b;
-  --color-amber-orange: #ff9800;
-  --color-deep-purple: #7b1fa2;
-  --color-workshop-black: #1a1a1a;
+  --color-navy: #003366;
+  --color-royal-blue: #1d4ed8;
+  --color-steel-blue: #4d8fd6;
+  --color-workshop-black: #0f172a;
   --color-canvas-white: #ffffff;
-  --color-section-grey: #f8f8f8;
-  --color-body-text: #4a4a4a;
-  --color-muted-text: #6b7280;
-  --color-border-grey: #e5e7eb;
+  --color-section-grey: #f8fafc;
+  --color-ground: #f1f5f9;
+  --color-body-text: #475569;
+  --color-muted-text: #64748b;
+  --color-strong: #334155;
+  --color-border-grey: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-placeholder: #94a3b8;
+  --color-dark-surface: #1e293b;
+  --color-dark-rule: #334155;
+
+  /* Status palette, as jedox-services holds it product wide: pale opaque
+     ground, darker text. Used by the app mock only. */
+  --color-success: #15803d;
+  --color-status-draft: #f1f5f9;
+  --color-status-draft-foreground: #475569;
+  --color-status-progress: #dbeafe;
+  --color-status-progress-foreground: #1d4ed8;
+  --color-status-waiting: #fef3c7;
+  --color-status-waiting-foreground: #b45309;
+  --color-status-complete: #dcfce7;
+  --color-status-complete-foreground: #15803d;
+  --color-status-overdue: #fee2e2;
+  --color-status-overdue-foreground: #b91c1c;
+  --color-plate: #f7d64a;
+  --color-plate-ink: #1a1a1a;
+
+  /* Type scale. Negative tracking on display sizes only; the label step is the
+     one with positive tracking and it is always uppercase. */
+  --text-display: 48px;
+  --text-display--line-height: 52px;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: 32px;
+  --text-h1--line-height: 38px;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: 24px;
+  --text-h2--line-height: 30px;
+  --text-h2--letter-spacing: -0.015em;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
+  --text-label--letter-spacing: 0.1em;
+  --text-chip: 12px;
+  --text-chip--line-height: 1.4;
+
+  /* jedox's control height. */
+  --spacing-control: 34px;
+
+  /*
+   * One radius, 6px, on buttons, inputs, cards and panels; 4px on status
+   * chips. Everything from md up collapses onto it. `rounded-full` still means
+   * a circle (dots, avatars); pill-shaped controls are ruled out.
+   *
+   * No drop shadows: Tailwind's shadow scale is flattened, so a stray
+   * `shadow-*` resolves to nothing. Cards separate on their border and on the
+   * page band behind them.
+   */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 6px;
+  --radius-xl: 6px;
+  --radius-2xl: 6px;
+
+  --shadow-2xs: none;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
+  /* The one shadow the sheet allows: a faint inset on inputs. */
+  --shadow-control: inset 0 1px 2px rgb(0 20 40 / 0.04);
+
+  --container-page: 1200px;
 }
 
 @layer base {
@@ -26,6 +126,7 @@
     color: var(--color-body-text);
     background: var(--color-canvas-white);
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   h1,
@@ -35,72 +136,106 @@
     font-family: var(--font-heading);
     color: var(--color-workshop-black);
   }
+
+  table,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* The uppercase section label. The tracking and the uppercase are not optional. */
+@utility brand-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  letter-spacing: var(--text-label--letter-spacing);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* A link in running text: navy, underlined so it reads as a link in body copy. */
+@utility brand-link {
+  color: var(--color-navy);
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+
+  &:hover {
+    color: var(--color-royal-blue);
+  }
 }
 
 @layer utilities {
-  .bg-gradient-primary {
-    background-image: linear-gradient(135deg, #c2185b, #f04e23, #ff9800);
-  }
-
-  .bg-gradient-purple {
-    background-image: linear-gradient(135deg, #7b1fa2, #c2185b, #f04e23);
-  }
-
-  .bg-gradient-warm {
-    background-image: linear-gradient(135deg, #f04e23, #ff9800);
-  }
-
-  .bg-gradient-dark {
-    background-image: linear-gradient(135deg, #1a1a1a, #2d1b3d);
-  }
-
-  .text-gradient-primary {
-    background-image: linear-gradient(135deg, #c2185b, #f04e23, #ff9800);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-
   .bg-road-texture {
-    background-image: repeating-linear-gradient(115deg, #1a1a1a 0px, #1a1a1a 2px, transparent 2px, transparent 16px);
+    background-image: repeating-linear-gradient(115deg, #0f172a 0px, #0f172a 2px, transparent 2px, transparent 16px);
   }
 }
 
 @layer components {
-  .reveal {
-    opacity: 0;
-    transform: translateY(14px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
+  /*
+   * Buttons, from jedox-services: 6px radius, Inter medium, flat navy for the
+   * one primary per screen, hover at 90%, a 1px press, and a 3px focus halo.
+   * The marketing size is jedox's `lg` (40px); `btn-sm` is its 34px control.
+   */
+  .btn {
+    @apply inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-md border border-transparent px-4 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none focus-visible:border-navy focus-visible:ring-[3px] focus-visible:ring-navy/50 active:translate-y-px;
   }
 
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+  .btn-sm {
+    @apply h-control px-3.5 text-[13.5px];
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
+  .btn-primary {
+    @apply bg-navy text-white hover:bg-navy/90;
+  }
+
+  /* The sheet's secondary: white ground, the heavier outline, strong ink. */
+  .btn-secondary {
+    @apply border-border-strong bg-canvas-white text-strong hover:bg-ground;
+  }
+
+  /* The inverse of primary, for a button sitting on a navy panel. */
+  .btn-on-dark {
+    @apply bg-canvas-white text-workshop-black hover:bg-canvas-white/90 focus-visible:ring-white/60;
+  }
+
+  /* jedox's outline badge: 4px radius, heavier outline, strong ink. */
+  .badge {
+    @apply inline-flex h-6 w-fit shrink-0 items-center justify-center gap-1 rounded-sm border border-border-strong bg-canvas-white px-2.5 text-chip font-medium whitespace-nowrap text-strong;
+  }
+
+  /* The one status chip: pale ground, darker text, 4px radius, no border. */
+  .status-chip {
+    @apply inline-flex w-fit shrink-0 items-center gap-1 rounded-sm px-2 py-0.5 font-medium whitespace-nowrap;
+  }
+
+  /* Text inputs and selects, as jedox-services draws them. */
+  .field {
+    @apply h-10 w-full rounded-md border border-border-strong bg-canvas-white px-3 text-sm text-workshop-black shadow-control transition-colors outline-none placeholder:text-placeholder focus-visible:border-navy focus-visible:ring-[3px] focus-visible:ring-navy/50 aria-invalid:border-status-overdue-foreground;
+  }
+
+  /* A card or panel on the page: white, the heavier outline, no shadow. */
+  .card {
+    @apply rounded-md border border-border-strong bg-canvas-white;
+  }
+
+  .icon-chip {
+    @apply flex size-10 shrink-0 items-center justify-center rounded-md bg-ground text-workshop-black;
   }
 
   .article-prose h2 {
     margin-top: 2.5rem;
     margin-bottom: 0.75rem;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.01em;
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    letter-spacing: var(--text-h2--letter-spacing);
+    font-weight: 700;
   }
 
   .article-prose h3 {
     margin-top: 1.75rem;
     margin-bottom: 0.5rem;
     font-size: 1.125rem;
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .article-prose p {
@@ -124,31 +259,34 @@
   .article-prose li::before {
     content: "";
     position: absolute;
-    left: 0;
-    top: 0.6rem;
+    left: 0.25rem;
+    top: 0.65rem;
     width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background-image: linear-gradient(135deg, #c2185b, #f04e23, #ff9800);
+    height: 2px;
+    background: var(--color-workshop-black);
   }
 
   .article-prose a {
-    color: var(--color-coral-orange);
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    color: var(--color-navy);
+    font-weight: 500;
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+  }
+
+  .article-prose a:hover {
+    color: var(--color-royal-blue);
   }
 
   .article-prose strong {
     color: var(--color-workshop-black);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .article-prose .table-scroll {
     margin-top: 1.5rem;
     overflow-x: auto;
-    border-radius: 0.75rem;
-    border: 1px solid var(--color-border-grey);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-strong);
   }
 
   .article-prose table {
@@ -169,7 +307,7 @@
   .article-prose thead th {
     background: var(--color-section-grey);
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-workshop-black);
   }
 
@@ -179,7 +317,7 @@
 
   .article-prose .callout {
     margin-top: 1.5rem;
-    border-radius: 0.75rem;
+    border-radius: var(--radius-md);
     border: 1px solid var(--color-border-grey);
     padding: 1rem 1.25rem;
     font-size: 0.9rem;
@@ -207,7 +345,7 @@
 
   .article-prose .toc {
     margin-top: 1.5rem;
-    border-radius: 0.75rem;
+    border-radius: var(--radius-md);
     border: 1px solid var(--color-border-grey);
     background: var(--color-section-grey);
     padding: 1.25rem 1.5rem;
@@ -216,6 +354,7 @@
   .article-prose .toc h2 {
     margin-top: 0;
     font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .article-prose .toc ol {
@@ -236,21 +375,21 @@
   }
 
   .article-prose .toc a {
-    font-weight: 600;
     text-decoration: none;
   }
 
   .article-prose .toc a:hover {
-    color: var(--color-coral-orange);
-    text-decoration: underline;
+    text-decoration-line: underline;
   }
 
   .article-prose .placeholder {
-    border-radius: 0.25rem;
-    background: #fff1ec;
+    border-radius: var(--radius-sm);
+    background: #eff6ff;
     padding: 0.05rem 0.4rem;
-    color: var(--color-coral-orange);
-    font-weight: 700;
+    color: var(--color-navy);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    font-weight: 600;
     white-space: nowrap;
   }
 
