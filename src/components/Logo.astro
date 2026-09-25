@@ -5,26 +5,27 @@ interface Props {
   class?: string;
 }
 
-const { showWordmark = true, iconSize = 36, class: className = "" } = Astro.props;
+const { showWordmark = true, iconSize = 32, class: className = "" } = Astro.props;
 
 const ICON_ASPECT_RATIO = 232 / 171;
 const iconWidth = Math.round(iconSize * ICON_ASPECT_RATIO);
 ---
 
-<div class:list={["inline-flex items-center gap-2.5", className]}>
+<span class:list={["inline-flex items-center gap-2", className]}>
   <img
     src="/logo-icon.png"
     alt="GarageCloud logo"
     width={iconWidth}
     height={iconSize}
+    class="shrink-0"
     style={`height: ${iconSize}px; width: ${iconWidth}px;`}
   />
 
   {
     showWordmark && (
-      <span class="font-heading text-lg font-extrabold tracking-tight text-workshop-black sm:text-2xl">
-        Garage<span class="text-gradient-primary">Cloud</span>
+      <span class="font-heading text-lg font-bold tracking-tight text-workshop-black">
+        Garage<span class="text-navy">Cloud</span>
       </span>
     )
   }
-</div>
+</span>

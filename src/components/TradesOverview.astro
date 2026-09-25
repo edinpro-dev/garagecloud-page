@@ -1,0 +1,42 @@
+---
+import { TRADES } from "../data/site";
+---
+
+<section id="trades" class="border-b border-border-grey">
+  <div class="mx-auto max-w-page px-6 py-20 lg:px-20">
+    <div class="max-w-[60ch]">
+      <p class="brand-label text-body-text">Built for your trade</p>
+      <h2 class="mt-3 font-heading text-h1 font-bold text-balance">Not just garages</h2>
+      <p class="mt-4 text-body-text">
+        A mobile tyre round, a locksmith callout and a remap booking are all jobs. They just need different fields.
+        GarageCloud handles each on the same board, so specialists aren't bending a garage system into a shape it was
+        never built for.
+      </p>
+    </div>
+
+    <div class="mt-12 grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {
+        TRADES.map((trade) => (
+          <a
+            href={trade.href}
+            class="flex flex-col rounded-lg border border-border-strong bg-canvas-white p-6 transition-colors hover:bg-section-grey focus-visible:ring-2 focus-visible:ring-navy focus-visible:outline-none"
+          >
+            <div class="icon-chip">
+              <trade.icon class="size-5" stroke-width={1.75} />
+            </div>
+            <h3 class="mt-4 font-heading text-base font-semibold">{trade.title}</h3>
+            <ul class="mt-4 flex flex-col divide-y divide-border-grey border-t border-border-grey">
+              {trade.items.map((item) => (
+                <li class="py-2 text-sm text-body-text">{item}</li>
+              ))}
+            </ul>
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 max-w-[70ch] text-sm text-body-text">
+      Running more than one of these? They share one board, one customer list and one set of invoices.
+    </p>
+  </div>
+</section>

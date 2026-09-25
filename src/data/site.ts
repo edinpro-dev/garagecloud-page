@@ -1,3 +1,27 @@
+import {
+  BellRing,
+  Calculator,
+  Car,
+  CircleDot,
+  ClipboardCheck,
+  ClipboardList,
+  Cpu,
+  KeyRound,
+  LayoutGrid,
+  MessageCircle,
+  ReceiptText,
+  Rocket,
+  Route,
+  Search,
+  Settings2,
+  ShieldCheck,
+  Sparkles,
+  Truck,
+  Wrench,
+  Zap,
+  type AstroComponent,
+} from "@lucide/astro";
+
 export const SITE = {
   name: "GarageCloud",
   domain: "garagecloud.co",
@@ -29,6 +53,8 @@ export const LEGAL = {
 export const HERO = {
   badge: "Launching soon",
   heading: "Garage management software that runs your whole workshop, without the paperwork.",
+  // The phrase in `heading` set in the accent colour.
+  headingEmphasis: "without the paperwork",
   subheading:
     "The workshop board, invoicing, inspections, reminders and accounts, connected in one system instead of spread across a diary, a spreadsheet and a group chat.",
   primaryCta: "Join the waiting list",
@@ -45,66 +71,66 @@ export const STATS: Stat[] = [
   { value: "14", label: "day free trial once we launch" },
 ];
 
-export type Feature = { icon: string; title: string; description: string };
+export type Feature = { icon: AstroComponent; title: string; description: string };
 
 export const FEATURES: Feature[] = [
   {
-    icon: "🖥",
+    icon: LayoutGrid,
     title: "Workshop Board",
     description: "See every bay and every job in real time.",
   },
   {
-    icon: "🔍",
+    icon: Search,
     title: "VRM Lookup",
     description: "Pull vehicle details straight from the registration number.",
   },
   {
-    icon: "📸",
+    icon: ClipboardCheck,
     title: "Inspections",
     description: "Photo-based checks customers can view and approve.",
   },
   {
-    icon: "💬",
+    icon: MessageCircle,
     title: "WhatsApp Approvals",
     description: "Customers approve work from their phone.",
   },
   {
-    icon: "⏰",
+    icon: BellRing,
     title: "Reminders",
     description: "MOT and service reminders sent without you chasing.",
   },
   {
-    icon: "🚗",
+    icon: Car,
     title: "Courtesy Cars",
     description: "Track availability and bookings alongside the job.",
   },
   {
-    icon: "🛞",
+    icon: CircleDot,
     title: "Mobile Tyres",
     description: "Schedule and route mobile tyre jobs from the same board.",
   },
   {
-    icon: "💻",
+    icon: Cpu,
     title: "ECU Remapping",
     description: "Log remap jobs and vehicle data in one record.",
   },
   {
-    icon: "🔑",
+    icon: KeyRound,
     title: "Auto Locksmith",
     description: "Manage callouts and key jobs like any other booking.",
   },
   {
-    icon: "🛡",
+    icon: ShieldCheck,
     title: "Ghost Immobiliser",
     description: "Track fitting jobs and warranty records.",
   },
   {
-    icon: "💷",
+    icon: ReceiptText,
     title: "Invoicing",
     description: "Raise and send invoices straight from the finished job card.",
   },
   {
-    icon: "📊",
+    icon: Calculator,
     title: "Xero / Sage",
     description: "Invoices flow straight to your accounts.",
   },
@@ -176,26 +202,29 @@ export const PRICING_TIERS: PricingTier[] = [
   },
 ];
 
-export type Integration = { name: string };
+export type Integration = { name: string; description: string };
 
 export const INTEGRATIONS: Integration[] = [
-  { name: "Xero" },
-  { name: "Sage" },
-  { name: "DVSA" },
+  { name: "Xero", description: "Invoices sync to your accounts" },
+  { name: "Sage", description: "Invoices sync to your accounts" },
+  { name: "DVSA", description: "MOT and vehicle data" },
 ];
 
-export type Step = { title: string; description: string };
+export type Step = { icon: AstroComponent; title: string; description: string };
 
 export const HOW_IT_WORKS: Step[] = [
   {
+    icon: ClipboardList,
     title: "Join the waiting list",
     description: "Leave your email and a few details about your business. It takes under a minute.",
   },
   {
+    icon: Settings2,
     title: "We set up your workspace",
     description: "When it is your turn, we configure your workshop board, invoicing and customer portal.",
   },
   {
+    icon: Rocket,
     title: "Go live",
     description: "Start running jobs, invoices and reminders from one system instead of several.",
   },
@@ -250,22 +279,70 @@ export const FAQS: Faq[] = [
   },
 ];
 
-export type Reason = { title: string; description: string };
+export type Reason = { icon: AstroComponent; title: string; description: string };
 
 export const WHY_JOIN_NOW: Reason[] = [
   {
+    icon: Sparkles,
     title: "Early access",
     description:
       "Get in before the public launch and start with a live workspace from day one.",
   },
   {
+    icon: Route,
     title: "Shape the roadmap",
     description:
       "Tell us what your workshop needs and see it built into the product.",
   },
   {
+    icon: Zap,
     title: "Priority onboarding",
     description:
       "Skip the queue when we open the doors, with onboarding help included.",
+  },
+];
+
+// What the setup call configures before a workshop goes live.
+export const WORKSPACE_SETUP_CHECKLIST: string[] = [
+  "Workshop board configured",
+  "Bays, staff and roles added",
+  "Invoicing and VAT set up",
+  "Xero or Sage connected",
+  "Customer portal enabled",
+  "Reminders switched on",
+];
+
+export type Trade = { icon: AstroComponent; title: string; href: string; items: string[] };
+
+export const TRADES: Trade[] = [
+  {
+    icon: Wrench,
+    title: "Garages",
+    href: "/garage-management-software",
+    items: ["Workshop board", "Inspections", "MOT reminders"],
+  },
+  {
+    icon: CircleDot,
+    title: "Mobile tyres",
+    href: "/mobile-tyre-fitting-software",
+    items: ["Job scheduling", "Routing", "On-site invoicing"],
+  },
+  {
+    icon: KeyRound,
+    title: "Auto locksmiths",
+    href: "/auto-locksmith-software",
+    items: ["Callouts", "Key jobs", "Ghost immobilisers"],
+  },
+  {
+    icon: Cpu,
+    title: "ECU remapping",
+    href: "/ecu-remapping-software",
+    items: ["Remap records", "Vehicle data", "Job history"],
+  },
+  {
+    icon: Truck,
+    title: "Fleet services",
+    href: "/fleet-maintenance-software",
+    items: ["Fleet vehicles", "Service schedules", "Consolidated invoicing"],
   },
 ];

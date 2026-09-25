@@ -1,75 +1,66 @@
 ---
-import { PRICING_TIERS } from "../data/site";
+import { Check } from "@lucide/astro";
+import { PRICING_TIERS, SITE } from "../data/site";
 ---
 
-<section id="pricing" class="bg-canvas-white py-20 sm:py-28">
-  <div class="mx-auto max-w-6xl px-6">
-    <div class="reveal mx-auto max-w-2xl text-center">
-      <span class="text-coral-orange font-heading text-xs font-bold uppercase tracking-widest">Pricing</span>
-      <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">GarageCloud pricing</h2>
-      <p class="mt-4 text-lg text-body-text">Simple plans, no hidden add-ons. Planned launch pricing, confirmed when we launch.</p>
+<section id="pricing" class="border-b border-border-grey">
+  <div class="mx-auto max-w-page px-6 py-20 lg:px-20">
+    <div class="mx-auto max-w-[60ch] text-center">
+      <p class="brand-label text-body-text">Pricing</p>
+      <h2 class="mt-3 font-heading text-h1 font-bold text-balance">GarageCloud pricing</h2>
+      <p class="mt-4 text-body-text">
+        Simple plans, no hidden add-ons. One monthly price per workshop, however many staff you put on it. Planned
+        launch pricing, confirmed when we launch.
+      </p>
     </div>
 
-    <div class="mt-14 grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
       {
-        PRICING_TIERS.map((tier, index) => (
+        PRICING_TIERS.map((tier) => (
           <div
-            style={`transition-delay: ${index * 100}ms`}
             class:list={[
-              "reveal relative flex flex-col rounded-2xl border bg-canvas-white p-8 transition-transform duration-200",
-              tier.highlighted
-                ? "border-transparent shadow-2xl shadow-coral-orange/15 lg:scale-105"
-                : "border-border-grey shadow-sm hover:-translate-y-1 hover:shadow-md",
+              "relative flex flex-col rounded-lg border bg-canvas-white p-8",
+              tier.highlighted ? "border-2 border-navy lg:-mt-4 lg:mb-4" : "border-border-strong",
             ]}
           >
-            {tier.highlighted && (
-              <div class="bg-gradient-primary pointer-events-none absolute inset-0 -z-10 rounded-2xl p-[2px]" aria-hidden="true">
-                <div class="h-full w-full rounded-[calc(1rem-2px)] bg-canvas-white" />
-              </div>
-            )}
-
             {tier.badge && (
-              <span class="bg-gradient-primary mb-4 inline-block w-fit rounded-full px-3 py-1 font-heading text-xs font-bold uppercase tracking-wide text-white">
-                {tier.badge}
-              </span>
+              <span class="badge absolute -top-3 left-1/2 -translate-x-1/2">{tier.badge}</span>
             )}
 
-            <h3 class="font-heading text-xl font-bold text-workshop-black">{tier.name}</h3>
-            <p class="mt-1 text-sm text-muted-text">{tier.tagline}</p>
+            <h3 class="font-heading text-h2 font-semibold">{tier.name}</h3>
+            <p class="mt-2 text-sm text-body-text">{tier.tagline}</p>
 
-            <div class="mt-5 flex items-baseline gap-1.5">
-              <span class="font-heading text-4xl font-extrabold text-workshop-black">{tier.price}</span>
-              <span class="text-sm text-muted-text">{tier.period}</span>
+            <div class="mt-6 flex items-end gap-1">
+              <span class="tabular font-num text-display font-bold text-workshop-black">
+                {tier.price}
+              </span>
+              <span class="mb-2 text-sm text-muted-text">/mo</span>
             </div>
-
-            <ul class="mt-6 flex flex-1 flex-col gap-3">
-              {tier.features.map((feature) => (
-                <li class="flex items-start gap-2.5 text-sm text-body-text">
-                  <span
-                    class="text-coral-orange bg-coral-orange/10 mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
-                    aria-hidden="true"
-                  >
-                    ✓
-                  </span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+            <p class="mt-1 text-sm text-muted-text">A month, excluding VAT</p>
 
             <a
-              href="#waiting-list"
-              class:list={[
-                "mt-8 rounded-full px-6 py-3 text-center font-heading text-sm font-bold transition-transform hover:scale-[1.02]",
-                tier.highlighted
-                  ? "bg-gradient-primary text-white shadow-md shadow-coral-orange/25"
-                  : "border border-border-grey text-workshop-black hover:border-workshop-black",
-              ]}
+              href="/#waiting-list"
+              class:list={["btn mt-6 w-full", tier.highlighted ? "btn-primary" : "btn-secondary"]}
             >
               Join the waiting list
             </a>
+
+            <ul class="mt-8 space-y-3 border-t border-border-grey pt-6 text-sm">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-3">
+                  <Check class="mt-0.5 size-4 shrink-0 text-workshop-black" stroke-width={2.5} />
+                  <span class="text-body-text">{feature}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         ))
       }
     </div>
+
+    <p class="mt-8 text-center text-sm text-body-text">
+      Prices are in GBP and exclude VAT. If anything changes before launch, the waiting list hears first.{" "}
+      <a href={`mailto:${SITE.contactEmail}`} class="brand-link font-medium">Email us with a question</a>.
+    </p>
   </div>
 </section>

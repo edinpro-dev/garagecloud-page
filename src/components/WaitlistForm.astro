@@ -1,45 +1,165 @@
-<section id="waiting-list" class="bg-gradient-dark relative overflow-hidden py-20 sm:py-28">
-  <div
-    class="bg-gradient-primary pointer-events-none absolute -bottom-32 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
-    aria-hidden="true"
-  >
-  </div>
+---
+import { ArrowRight, Check, ChevronDown, LoaderCircle } from "@lucide/astro";
+import { BUSINESS_TYPES, SITE } from "../data/site";
+---
 
-  <div class="relative mx-auto max-w-xl px-6 text-center">
-    <span
-      class="bg-gradient-primary inline-block rounded-full px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-wide text-white"
-    >
-      Early access
-    </span>
-    <h2 class="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Join the waiting list</h2>
-    <p class="mt-4 text-base text-white/70">
-      Leave your details and we will let you know as soon as GarageCloud opens.
-    </p>
+<section>
+  <div class="mx-auto max-w-page px-6 pt-20 lg:px-20">
+    <!-- The page's one brand-colour panel: solid navy, white ink throughout. -->
+    <div id="waiting-list" class="scroll-mt-24 rounded-lg bg-navy px-6 py-16 text-center sm:px-12">
+      <h2 class="mx-auto max-w-[24ch] font-heading text-h1 font-bold text-balance text-white">
+        Join the waiting list
+      </h2>
+      <p class="mx-auto mt-4 max-w-[55ch] text-lg text-white/85">
+        Leave your details and we will let you know as soon as GarageCloud opens, and set your workspace up before we
+        open the doors.
+      </p>
 
-    <div class="mt-10 overflow-hidden rounded-2xl bg-white" style="min-height: 436px">
-      <iframe
-        src="https://links.edinpro.co.uk/widget/form/AE1hYyVQNf8NXq5m41q1"
-        style="width:100%;height:436px;border:none;border-radius:8px"
-        id="inline-AE1hYyVQNf8NXq5m41q1"
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-trigger-value=""
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="neverDeactivate"
-        data-deactivation-value=""
-        data-form-name="Form 3"
-        data-height="436"
-        data-layout-iframe-id="inline-AE1hYyVQNf8NXq5m41q1"
-        data-form-id="AE1hYyVQNf8NXq5m41q1"
-        title="Join the GarageCloud waiting list"
-      ></iframe>
+      <div class="mx-auto mt-8 max-w-xl rounded-md bg-canvas-white p-6 text-left sm:p-8">
+        <!-- Posts to worker/index.ts, which relays it to the HighLevel form. -->
+        <form data-waitlist-form action="/api/waitlist" method="post" novalidate class="flex flex-col gap-5">
+          <div>
+            <label for="waitlist-email" class="text-sm font-medium text-workshop-black">
+              Email address <span class="text-status-overdue-foreground" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="waitlist-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="you@yourgarage.co.uk"
+              class="field mt-1.5"
+            />
+          </div>
+
+          <div>
+            <label for="waitlist-business" class="text-sm font-medium text-workshop-black">Business name</label>
+            <input
+              id="waitlist-business"
+              name="business"
+              type="text"
+              autocomplete="organization"
+              maxlength="200"
+              placeholder="Riverside Motors"
+              class="field mt-1.5"
+            />
+          </div>
+
+          <div>
+            <label for="waitlist-type" class="text-sm font-medium text-workshop-black">Business type</label>
+            <div class="relative mt-1.5">
+              <select id="waitlist-type" name="businessType" class="field appearance-none pr-9">
+                <option value="">Select an option</option>
+                {BUSINESS_TYPES.map((type) => <option value={type.label}>{type.label}</option>)}
+              </select>
+              <ChevronDown class="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-muted-text" />
+            </div>
+          </div>
+
+          <!-- Honeypot. Hidden from people and assistive tech; bots fill it in. -->
+          <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+            <label for="waitlist-website">Website</label>
+            <input id="waitlist-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <label class="flex items-start gap-3 text-sm text-body-text">
+            <input
+              name="consent"
+              type="checkbox"
+              value="yes"
+              required
+              class="mt-0.5 size-4 shrink-0 rounded-sm border-border-strong accent-navy"
+            />
+            <span>
+              I agree to be emailed about the GarageCloud launch. Read our{" "}
+              <a href="/privacy" class="brand-link font-medium">privacy page</a>.
+            </span>
+          </label>
+
+          <p data-error class="hidden text-sm text-status-overdue-foreground" role="alert"></p>
+
+          <button type="submit" class="btn btn-primary w-full">
+            <span data-idle class="inline-flex items-center gap-1.5">Join the waiting list <ArrowRight class="size-4" /></span>
+            <span data-busy class="hidden items-center gap-1.5"><LoaderCircle class="size-4 animate-spin" /> Joining…</span>
+          </button>
+        </form>
+
+        <div data-success class="hidden flex-col items-center py-6 text-center" role="status" tabindex="-1">
+          <span class="flex size-10 items-center justify-center rounded-full bg-status-complete text-status-complete-foreground">
+            <Check class="size-5" stroke-width={2.5} />
+          </span>
+          <p class="mt-4 font-heading text-h2 font-semibold text-workshop-black">You're on the list</p>
+          <p class="mt-2 max-w-[40ch] text-sm text-body-text">
+            We'll email you before launch to set your workspace up.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-6 text-sm font-medium text-white/75">
+        Free to join · No card required · 14 day free trial at launch
+      </p>
+      <p class="mt-2 text-xs text-white/60">We will only email you about the GarageCloud launch. No spam.</p>
     </div>
-
-    <p class="mt-6 text-center text-xs text-white/50">
-      We will only email you about the GarageCloud launch. No spam.
-    </p>
   </div>
 </section>
 
-<script src="https://links.edinpro.co.uk/js/form_embed.js"></script>
+<script define:vars={{ contactEmail: SITE.contactEmail }}>
+  const MESSAGES = {
+    invalid_email: "Enter a valid email address.",
+    consent_required: "Tick the box to agree to launch emails.",
+    fallback: `Something went wrong on our side. Try again, or email ${contactEmail} and we'll add you.`,
+  };
+
+  for (const form of document.querySelectorAll("[data-waitlist-form]")) {
+    const card = form.parentElement;
+    const error = form.querySelector("[data-error]");
+    const button = form.querySelector("button[type=submit]");
+    const email = form.elements.namedItem("email");
+    const consent = form.elements.namedItem("consent");
+
+    const showError = (message, field) => {
+      error.textContent = message;
+      error.classList.remove("hidden");
+      if (field) {
+        field.setAttribute("aria-invalid", "true");
+        field.focus();
+      }
+    };
+
+    const setBusy = (busy) => {
+      button.disabled = busy;
+      button.querySelector("[data-idle]").classList.toggle("hidden", busy);
+      button.querySelector("[data-busy]").classList.toggle("hidden", !busy);
+      button.querySelector("[data-busy]").classList.toggle("inline-flex", busy);
+    };
+
+    form.addEventListener("input", (event) => event.target.removeAttribute("aria-invalid"));
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      error.classList.add("hidden");
+
+      if (!email.validity.valid) return showError(MESSAGES.invalid_email, email);
+      if (!consent.checked) return showError(MESSAGES.consent_required, consent);
+
+      setBusy(true);
+      try {
+        const response = await fetch(form.action, { method: "POST", body: new FormData(form) });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) {
+          return showError(MESSAGES[result.error] ?? MESSAGES.fallback);
+        }
+        form.classList.add("hidden");
+        const success = card.querySelector("[data-success]");
+        success.classList.remove("hidden");
+        success.classList.add("flex");
+        success.focus();
+      } catch {
+        showError(MESSAGES.fallback);
+      } finally {
+        setBusy(false);
+      }
+    });
+  }
+</script>
